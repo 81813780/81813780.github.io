@@ -98,7 +98,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/58536-3b99dfb29a6af33c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/58536-b4b0da352d524d13.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/58536-becf5c8fd5030874.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2016-06-17T07:21:39.389Z">
+<meta property="og:updated_time" content="2016-06-17T07:31:29.409Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android单元测试之Mockito浅析">
 <meta name="twitter:description" content="写在前面因个人能力有限，可能会出现理解错误的地方，欢迎指正和交流！
@@ -346,125 +346,36 @@
 <p>写单元测试很重要..</p>
 <p>写单元测试很重要..</p>
 <h3 id="Mockito"><a href="#Mockito" class="headerlink" title="Mockito"></a>Mockito</h3><p> 接下来就让我们开始使用Mockito进行单元测试吧</p>
-<h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><pre><code>dependencies {
-    testCompile &apos;junit:junit:4.12&apos;
-    // 如果要使用Mockito，你需要添加此条依赖库
-    testCompile &apos;org.mockito:mockito-core:1.+&apos;
-    // 如果你要使用Mockito 用于 Android instrumentation tests，那么需要你添加以下三条依赖库
-    androidTestCompile &apos;org.mockito:mockito-core:1.+&apos;
-    androidTestCompile &quot;com.google.dexmaker:dexmaker:1.2&quot;
-    androidTestCompile &quot;com.google.dexmaker:dexmaker-mockito:1.2&quot;
-}
-</code></pre><h4 id="创建Mockito测试"><a href="#创建Mockito测试" class="headerlink" title="创建Mockito测试"></a>创建Mockito测试</h4><p>在 Mockito 中你可以使用 <code>mock()</code>  方法来创建一个模拟对象，也可以使用注解的方式 <code>@Mock</code> 来创建 ，这里推荐使用注解。需要注意的是，如果是使用注解方式，需要在使用前进行初始化。这里有三种初始化方式：</p>
+<h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    testCompile <span class="string">'junit:junit:4.12'</span></span><br><span class="line">    <span class="comment">// 如果要使用Mockito，你需要添加此条依赖库</span></span><br><span class="line">    testCompile <span class="string">'org.mockito:mockito-core:1.+'</span></span><br><span class="line">    <span class="comment">// 如果你要使用Mockito 用于 Android instrumentation tests，那么需要你添加以下三条依赖库</span></span><br><span class="line">    androidTestCompile <span class="string">'org.mockito:mockito-core:1.+'</span></span><br><span class="line">    androidTestCompile <span class="string">"com.google.dexmaker:dexmaker:1.2"</span></span><br><span class="line">    androidTestCompile <span class="string">"com.google.dexmaker:dexmaker-mockito:1.2"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="创建Mockito测试"><a href="#创建Mockito测试" class="headerlink" title="创建Mockito测试"></a>创建Mockito测试</h4><p>在 Mockito 中你可以使用 <code>mock()</code>  方法来创建一个模拟对象，也可以使用注解的方式 <code>@Mock</code> 来创建 ，这里推荐使用注解。需要注意的是，如果是使用注解方式，需要在使用前进行初始化。这里有三种初始化方式：</p>
 <ol>
 <li>使用 MockitoAnnotations.initMocks(this) 方式</li>
 </ol>
 <p>示例代码：</p>
-<pre><code>public class MockitoAnnotationsTest {
-
-    @Mock
-    AccountData accountData;
-
-    @Before
-    public void setupAccountData(){
-        MockitoAnnotations.initMocks(this);
-    }
-
-    @Test
-    public void testIsNotNull(){
-        assertNotNull(accountData);
-    }
-
-}
-</code></pre><p>2.使用 @RunWith(MockitoJUnitRunner.class) 方式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MockitoAnnotationsTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Mock</span></span><br><span class="line">    AccountData accountData;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setupAccountData</span><span class="params">()</span></span>&#123;</span><br><span class="line">        MockitoAnnotations.initMocks(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testIsNotNull</span><span class="params">()</span></span>&#123;</span><br><span class="line">        assertNotNull(accountData);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.使用 @RunWith(MockitoJUnitRunner.class) 方式</p>
 <p>示例代码：</p>
-<pre><code>@RunWith(MockitoJUnitRunner.class)
-public class MockitoJUnitRunnerTest {
-
-    @Mock
-    AccountData accountData;
-
-    @Test
-    public void testIsNotNull(){
-        assertNotNull(accountData);
-    }
-
-}
-</code></pre><ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(MockitoJUnitRunner.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MockitoJUnitRunnerTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Mock</span></span><br><span class="line">    AccountData accountData;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testIsNotNull</span><span class="params">()</span></span>&#123;</span><br><span class="line">        assertNotNull(accountData);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
 <li>使用 MockitoRule 方式</li>
 </ol>
 <p>示例代码</p>
-<pre><code>public class MockitoRuleTest {
-
-    @Mock
-    AccountData accountData;
-
-    @Rule
-    public MockitoRule mockitoRule = MockitoJUnit.rule();
-
-    @Test
-    public void testIsNotNull(){
-        assertNotNull(accountData);
-    }
-
-}
-</code></pre><h4 id="如何使用Mockito进行测试"><a href="#如何使用Mockito进行测试" class="headerlink" title="如何使用Mockito进行测试"></a>如何使用Mockito进行测试</h4><p>这里我以AccountData类为例，进行一个简单的对象模拟测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MockitoRuleTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Mock</span></span><br><span class="line">    AccountData accountData;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Rule</span></span><br><span class="line">    <span class="keyword">public</span> MockitoRule mockitoRule = MockitoJUnit.rule();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testIsNotNull</span><span class="params">()</span></span>&#123;</span><br><span class="line">        assertNotNull(accountData);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="如何使用Mockito进行测试"><a href="#如何使用Mockito进行测试" class="headerlink" title="如何使用Mockito进行测试"></a>如何使用Mockito进行测试</h4><p>这里我以AccountData类为例，进行一个简单的对象模拟测试</p>
 <p>AccountData代码</p>
-<pre><code>public class AccountData {
-
-    private boolean isLogin;
-    private String userName;
-
-    public boolean isLogin() {
-        return isLogin;
-    }
-
-    public void setLogin(boolean login) {
-        isLogin = login;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-}
-</code></pre><p>假设现在你想对AccountData的mock对象进行模拟测试:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountData</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> isLogin;</span><br><span class="line">    <span class="keyword">private</span> String userName;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isLogin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> isLogin;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLogin</span><span class="params">(<span class="keyword">boolean</span> login)</span> </span>&#123;</span><br><span class="line">        isLogin = login;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUserName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserName</span><span class="params">(String userName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userName = userName;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>假设现在你想对AccountData的mock对象进行模拟测试:</p>
 <p>比如我希望 <code>isLogin()</code> 方法被调用时返回true，那么你可以这样写：</p>
-<pre><code>@Test
-public void testIsLogin(){
-    when(accountData.isLogin()).thenReturn(true);
-    boolean isLogin=accountData.isLogin();
-    assertTrue(isLogin);
-}
-</code></pre><p>如果你希望 <code>getUserName()</code> 被调用返回Jack</p>
-<pre><code>@Test
-public void testGetUserName(){
-    when(accountData.getUserName()).thenReturn(&quot;Jack&quot;);
-    assertEquals(&quot;Jack&quot;,accountData.getUserName());
-}
-</code></pre><p>如果你希望对 <code>setUserName(String userName)</code> 方法中参数进行测试</p>
-<pre><code>@Test
-public void testSetUserName(){
-    accountData.setUserName(&quot;wang&quot;);
-    verify(accountData).setUserName(Matchers.eq(&quot;wang&quot;));
-}
-</code></pre><p>如果你想统计 ‘isLogin()’ 方法被调用的次数:</p>
-<pre><code>@Test
-public void testIsLoginTimes(){
-    accountData.isLogin();
-    accountData.isLogin();
-    verify(accountData,times(2)).isLogin();
-}
-</code></pre><p>又或者</p>
-<pre><code>verify(mock, never()).someMethod(&quot;never called&quot;);
-verify(mock, atLeastOnce()).someMethod(&quot;called at least once&quot;);
-verify(mock, atLeast(2)).someMethod(&quot;called at least twice&quot;);
-verify(mock, times(5)).someMethod(&quot;called five times&quot;);
-verify(mock, atMost(3)).someMethod(&quot;called at most 3 times&quot;);
-</code></pre><p>……</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testIsLogin</span><span class="params">()</span></span>&#123;</span><br><span class="line">    when(accountData.isLogin()).thenReturn(<span class="keyword">true</span>);</span><br><span class="line">    <span class="keyword">boolean</span> isLogin=accountData.isLogin();</span><br><span class="line">    assertTrue(isLogin);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果你希望 <code>getUserName()</code> 被调用返回Jack</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testGetUserName</span><span class="params">()</span></span>&#123;</span><br><span class="line">    when(accountData.getUserName()).thenReturn(<span class="string">"Jack"</span>);</span><br><span class="line">    assertEquals(<span class="string">"Jack"</span>,accountData.getUserName());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果你希望对 <code>setUserName(String userName)</code> 方法中参数进行测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSetUserName</span><span class="params">()</span></span>&#123;</span><br><span class="line">    accountData.setUserName(<span class="string">"wang"</span>);</span><br><span class="line">    verify(accountData).setUserName(Matchers.eq(<span class="string">"wang"</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果你想统计 ‘isLogin()’ 方法被调用的次数:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testIsLoginTimes</span><span class="params">()</span></span>&#123;</span><br><span class="line">    accountData.isLogin();</span><br><span class="line">    accountData.isLogin();</span><br><span class="line">    verify(accountData,times(<span class="number">2</span>)).isLogin();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>又或者</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">verify(mock, never()).someMethod(<span class="string">"never called"</span>);</span><br><span class="line">verify(mock, atLeastOnce()).someMethod(<span class="string">"called at least once"</span>);</span><br><span class="line">verify(mock, atLeast(<span class="number">2</span>)).someMethod(<span class="string">"called at least twice"</span>);</span><br><span class="line">verify(mock, times(<span class="number">5</span>)).someMethod(<span class="string">"called five times"</span>);</span><br><span class="line">verify(mock, atMost(<span class="number">3</span>)).someMethod(<span class="string">"called at most 3 times"</span>);</span><br></pre></td></tr></table></figure>
+<p>……</p>
 <p>是不是使用起来简单明了。</p>
 <p>那还等什么，赶紧Get起来吧，如果你想进一步了解，那就赶紧打开 <a href="http://site.mockito.org/" target="_blank" rel="external">Mockito</a> 的官网吧。</p>
 <h3 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h3><p><a href="https://github.com/81813780/MockitoSample" target="_blank" rel="external">文中代码示例</a></p>
