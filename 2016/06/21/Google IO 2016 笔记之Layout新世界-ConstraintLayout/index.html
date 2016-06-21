@@ -84,18 +84,12 @@
 
 
 
-<meta name="description" content="引子首先来让我们回顾一下 Android 目前已有的布局有哪些。
-
-我想大家使用比较多的应该是 LinearLayout 和 RelativeLayout 这两种布局文件.
-实际在使用过程中，这两种布局都会有各自的不足之处。比如你要用 LinearLayout 来实现一个复杂的布局，那么就会产生一个很深的层级嵌套，而这显然会带来一定的性能问题。但是如果你要使用 RelativeLayout 来实现">
+<meta name="description" content="引子首先来让我们回顾一下 Android 目前已有的布局有哪些。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Google I/O 2016 笔记之Layout新世界-ConstraintLayout">
 <meta property="og:url" content="http://yoursite.com/2016/06/21/Google IO 2016 笔记之Layout新世界-ConstraintLayout/index.html">
 <meta property="og:site_name" content="Jack Wang">
-<meta property="og:description" content="引子首先来让我们回顾一下 Android 目前已有的布局有哪些。
-
-我想大家使用比较多的应该是 LinearLayout 和 RelativeLayout 这两种布局文件.
-实际在使用过程中，这两种布局都会有各自的不足之处。比如你要用 LinearLayout 来实现一个复杂的布局，那么就会产生一个很深的层级嵌套，而这显然会带来一定的性能问题。但是如果你要使用 RelativeLayout 来实现">
+<meta property="og:description" content="引子首先来让我们回顾一下 Android 目前已有的布局有哪些。">
 <meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160621105830.png?imageMogr2/thumbnail/600x600">
 <meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/294739bdd5873bb6.png">
 <meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160621143541.png?imageMogr2/thumbnail/700x700">
@@ -104,13 +98,10 @@
 <meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/db1fb151d0cdf191.png">
 <meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/7525611ff3c93d4.png">
 <meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/e70295e04cb3aa4c.png">
-<meta property="og:updated_time" content="2016-06-21T09:31:51.496Z">
+<meta property="og:updated_time" content="2016-06-21T09:36:15.953Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Google I/O 2016 笔记之Layout新世界-ConstraintLayout">
-<meta name="twitter:description" content="引子首先来让我们回顾一下 Android 目前已有的布局有哪些。
-
-我想大家使用比较多的应该是 LinearLayout 和 RelativeLayout 这两种布局文件.
-实际在使用过程中，这两种布局都会有各自的不足之处。比如你要用 LinearLayout 来实现一个复杂的布局，那么就会产生一个很深的层级嵌套，而这显然会带来一定的性能问题。但是如果你要使用 RelativeLayout 来实现">
+<meta name="twitter:description" content="引子首先来让我们回顾一下 Android 目前已有的布局有哪些。">
 <meta name="twitter:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160621105830.png?imageMogr2/thumbnail/600x600">
 
 
@@ -332,22 +323,23 @@
       
         <h3 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h3><p>首先来让我们回顾一下 Android 目前已有的布局有哪些。</p>
 <p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160621105830.png?imageMogr2/thumbnail/600x600" alt="图片来自Google官方"></p>
-<p>我想大家使用比较多的应该是 LinearLayout 和 RelativeLayout 这两种布局文件.</p>
-<p>实际在使用过程中，这两种布局都会有各自的不足之处。比如你要用 LinearLayout 来实现一个复杂的布局，那么就会产生一个很深的层级嵌套，而这显然会带来一定的性能问题。但是如果你要使用 RelativeLayout 来实现的话，你会发现无论在使用上还是布局编辑器上都非常难用。</p>
-<p>有的小伙伴说，那 LinearLayout 和 RelativeLayout 混合使用不就可以解决问题了？</p>
+<a id="more"></a>
+<p>我想大家使用比较多的应该是 <code>LinearLayout</code> 和 <code>RelativeLayout</code> 这两种布局文件.</p>
+<p>实际在使用过程中，这两种布局都会有各自的不足之处。比如你要用 <code>LinearLayout</code> 来实现一个复杂的布局，那么就会产生一个很深的层级嵌套，而这显然会带来一定的性能问题。但是如果你要使用 RelativeLayout 来实现的话，你会发现无论在使用上还是布局编辑器上都非常难用。</p>
+<p>有的小伙伴说，那 <code>LinearLayout</code> 和 <code>RelativeLayout</code> 混合使用不就可以解决问题了？</p>
 <p>额…这…（兄弟，你不按套路出牌啊）</p>
 <p>开个玩笑，因为作为Android官方来说，他们肯定有更优雅的方式嘛。这就是今天的主角-<strong>ConstraintLayout</strong></p>
-<h3 id="ConstraintLayout-简介"><a href="#ConstraintLayout-简介" class="headerlink" title="ConstraintLayout 简介"></a>ConstraintLayout 简介</h3><p>ConstraintLayout 直译的话，就是约束性布局.我们来看官方是怎么来介绍它的：</p>
+<h3 id="ConstraintLayout-简介"><a href="#ConstraintLayout-简介" class="headerlink" title="ConstraintLayout 简介"></a>ConstraintLayout 简介</h3><p><code>ConstraintLayout</code> 直译的话，就是约束性布局.我们来看官方是怎么来介绍它的：</p>
 <blockquote>
 <p>A  small , unbundled library compatible with API  level 9 .<br>Designed to reduce nesting .<br>Designed to be used in Studio .</p>
 </blockquote>
 <p>一句话，它很棒，你用不用！</p>
-<p>可是我想知道 ConstraintLayout 到底是个什么呢 ？ </p>
+<p>可是我想知道 <code>ConstraintLayout</code> 到底是个什么呢 ？ </p>
 <blockquote>
 <p>ConstraintLayout  does what RelativeLayout does , but more .</p>
 </blockquote>
-<p>对，你可以理解为一个增强版的 RelativeLayout . </p>
-<p>而相对于RelativeLayout，ConstraintLayout 则更加灵活，性能出众，更主要的是，布局编辑器终于可以不那么鸡肋了 .</p>
+<p>对，你可以理解为一个增强版的 <code>RelativeLayout</code> . </p>
+<p>而相对于<code>RelativeLayout</code>，<code>ConstraintLayout</code> 则更加灵活，性能出众，更主要的是，布局编辑器终于可以不那么鸡肋了 .</p>
 <p><img src="http://o8wshxdfk.bkt.clouddn.com/294739bdd5873bb6.png" alt="图片来自Google官方"></p>
 <p>看起来很Cool！是不是。</p>
 <h3 id="ConstraintLayout-使用"><a href="#ConstraintLayout-使用" class="headerlink" title="ConstraintLayout 使用"></a>ConstraintLayout 使用</h3><p><strong>准备工作：</strong></p>
@@ -359,7 +351,7 @@
 <h4 id="Constraints"><a href="#Constraints" class="headerlink" title="Constraints"></a>Constraints</h4><blockquote>
 <p>这部分内容参考(偷个懒)了官方指导教程 .</p>
 </blockquote>
-<p> ConstraintLayout 的重点在于Constraints，可以直译为约束，或者关联也可以。Constraints可以帮助你保持控件对齐. 你可以使用锚点(比如下图展示的Button2的四个边上圆点)来确定与之关联控件之间的对齐规则. 例如, 设置一个从 button 2 的左边到 button 1 的右边的约束(见下图)，意味着控件 button 2 将会位于 button 1 右边 56dp 处.</p>
+<p> <code>ConstraintLayout</code> 的重点在于Constraints，可以直译为约束，或者关联也可以。Constraints可以帮助你保持控件对齐. 你可以使用锚点(比如下图展示的Button2的四个边上圆点)来确定与之关联控件之间的对齐规则. 例如, 设置一个从 button 2 的左边到 button 1 的右边的约束(见下图)，意味着控件 button 2 将会位于 button 1 右边 56dp 处.</p>
 <p><img src="http://o8wshxdfk.bkt.clouddn.com/9bc79b0252ae3bf6.png" alt="图片来自Google官方"></p>
 <p><strong>操作类型的说明</strong></p>
 <p><img src="http://o8wshxdfk.bkt.clouddn.com/69825db037949875.png" alt="图片来自Google官方"></p>
@@ -369,7 +361,7 @@
 <p><strong>示例</strong></p>
 <p>需要进一步了解或者感兴趣的小伙伴可以直接去看看<br><strong><a href="https://github.com/googlecodelabs/constraint-layout" target="_blank" rel="external">constraint-layout</a></strong> 这是Android官方提供的代码示例.</p>
 <blockquote>
-<p>关于 ConstraintLayout 的用法这里只简单做个介绍，目前 ConstraintLayout 还处在一个快速迭代更新的阶段，所以并不推荐在实际项目中去使用，就我个人的实际体验上，确实还是存在着一些问题，当然这并不影响我们去了解它。</p>
+<p>关于 ConstraintLayout 的用法这里只简单做个介绍，目前 <code>ConstraintLayout</code> 还处在一个快速迭代更新的阶段，所以并不推荐在实际项目中去使用，就我个人的实际体验上，确实还是存在着一些问题，当然这并不影响我们去了解它。</p>
 </blockquote>
 <h3 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h3><p>正如 ConstraintLayout 官方介绍视频中多次强调的那一句话：</p>
 <blockquote>
