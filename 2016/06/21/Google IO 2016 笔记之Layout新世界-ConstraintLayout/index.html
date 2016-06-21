@@ -98,7 +98,7 @@
 <meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/db1fb151d0cdf191.png">
 <meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/7525611ff3c93d4.png">
 <meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/e70295e04cb3aa4c.png">
-<meta property="og:updated_time" content="2016-06-21T09:36:15.953Z">
+<meta property="og:updated_time" content="2016-06-21T09:47:39.754Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Google I/O 2016 笔记之Layout新世界-ConstraintLayout">
 <meta name="twitter:description" content="引子首先来让我们回顾一下 Android 目前已有的布局有哪些。">
@@ -321,7 +321,7 @@
       
 
       
-        <h3 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h3><p>首先来让我们回顾一下 Android 目前已有的布局有哪些。</p>
+        <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>首先来让我们回顾一下 Android 目前已有的布局有哪些。</p>
 <p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160621105830.png?imageMogr2/thumbnail/600x600" alt="图片来自Google官方"></p>
 <a id="more"></a>
 <p>我想大家使用比较多的应该是 <code>LinearLayout</code> 和 <code>RelativeLayout</code> 这两种布局文件.</p>
@@ -329,7 +329,7 @@
 <p>有的小伙伴说，那 <code>LinearLayout</code> 和 <code>RelativeLayout</code> 混合使用不就可以解决问题了？</p>
 <p>额…这…（兄弟，你不按套路出牌啊）</p>
 <p>开个玩笑，因为作为Android官方来说，他们肯定有更优雅的方式嘛。这就是今天的主角-<strong>ConstraintLayout</strong></p>
-<h3 id="ConstraintLayout-简介"><a href="#ConstraintLayout-简介" class="headerlink" title="ConstraintLayout 简介"></a>ConstraintLayout 简介</h3><p><code>ConstraintLayout</code> 直译的话，就是约束性布局.我们来看官方是怎么来介绍它的：</p>
+<h2 id="ConstraintLayout-简介"><a href="#ConstraintLayout-简介" class="headerlink" title="ConstraintLayout 简介"></a>ConstraintLayout 简介</h2><p><code>ConstraintLayout</code> 直译的话，就是约束性布局.我们来看官方是怎么来介绍它的：</p>
 <blockquote>
 <p>A  small , unbundled library compatible with API  level 9 .<br>Designed to reduce nesting .<br>Designed to be used in Studio .</p>
 </blockquote>
@@ -342,28 +342,26 @@
 <p>而相对于<code>RelativeLayout</code>，<code>ConstraintLayout</code> 则更加灵活，性能出众，更主要的是，布局编辑器终于可以不那么鸡肋了 .</p>
 <p><img src="http://o8wshxdfk.bkt.clouddn.com/294739bdd5873bb6.png" alt="图片来自Google官方"></p>
 <p>看起来很Cool！是不是。</p>
-<h3 id="ConstraintLayout-使用"><a href="#ConstraintLayout-使用" class="headerlink" title="ConstraintLayout 使用"></a>ConstraintLayout 使用</h3><p><strong>准备工作：</strong></p>
-<ul>
+<h2 id="ConstraintLayout-使用"><a href="#ConstraintLayout-使用" class="headerlink" title="ConstraintLayout 使用"></a>ConstraintLayout 使用</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ul>
 <li>Android Studio 升级到2.2 preview</li>
 <li>添加 <code>compile &#39;com.android.support.constraint:constraint-layout:1.0.0-alpha3&#39;</code> 到 <code>dependencies</code> 中</li>
 </ul>
-<h4 id="显示"><a href="#显示" class="headerlink" title="显示"></a>显示</h4><p>在布局编辑器中有两种显示方式：Design  和 Blueprint .<br><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160621143541.png?imageMogr2/thumbnail/700x700" alt="show"></p>
-<h4 id="Constraints"><a href="#Constraints" class="headerlink" title="Constraints"></a>Constraints</h4><blockquote>
+<h3 id="显示"><a href="#显示" class="headerlink" title="显示"></a>显示</h3><p>在布局编辑器中有两种显示方式：Design  和 Blueprint .<br><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160621143541.png?imageMogr2/thumbnail/700x700" alt="show"></p>
+<h3 id="Constraints"><a href="#Constraints" class="headerlink" title="Constraints"></a>Constraints</h3><blockquote>
 <p>这部分内容参考(偷个懒)了官方指导教程 .</p>
 </blockquote>
 <p> <code>ConstraintLayout</code> 的重点在于Constraints，可以直译为约束，或者关联也可以。Constraints可以帮助你保持控件对齐. 你可以使用锚点(比如下图展示的Button2的四个边上圆点)来确定与之关联控件之间的对齐规则. 例如, 设置一个从 button 2 的左边到 button 1 的右边的约束(见下图)，意味着控件 button 2 将会位于 button 1 右边 56dp 处.</p>
 <p><img src="http://o8wshxdfk.bkt.clouddn.com/9bc79b0252ae3bf6.png" alt="图片来自Google官方"></p>
-<p><strong>操作类型的说明</strong></p>
-<p><img src="http://o8wshxdfk.bkt.clouddn.com/69825db037949875.png" alt="图片来自Google官方"></p>
-<p>调整控件大小的操作：<br><img src="http://o8wshxdfk.bkt.clouddn.com/db1fb151d0cdf191.png" alt="Resize Handle"></p>
-<p>建立控件之间边关联的操作<br><img src="http://o8wshxdfk.bkt.clouddn.com/7525611ff3c93d4.png" alt="Side Constraint Handle"></p>
-<p>控件基准线约束的操作<br><img src="http://o8wshxdfk.bkt.clouddn.com/e70295e04cb3aa4c.png" alt="Baseline Constraint Handle"></p>
-<p><strong>示例</strong></p>
-<p>需要进一步了解或者感兴趣的小伙伴可以直接去看看<br><strong><a href="https://github.com/googlecodelabs/constraint-layout" target="_blank" rel="external">constraint-layout</a></strong> 这是Android官方提供的代码示例.</p>
+<h4 id="操作类型的说明"><a href="#操作类型的说明" class="headerlink" title="操作类型的说明"></a>操作类型的说明</h4><p><img src="http://o8wshxdfk.bkt.clouddn.com/69825db037949875.png" alt="图片来自Google官方"></p>
+<p>上图中显示了该控件所能操作的类型</p>
+<p><strong>调整控件大小的操作：</strong><br><img src="http://o8wshxdfk.bkt.clouddn.com/db1fb151d0cdf191.png" alt="Resize Handle"></p>
+<p><strong>建立控件之间边关联的操作：</strong><br><img src="http://o8wshxdfk.bkt.clouddn.com/7525611ff3c93d4.png" alt="Side Constraint Handle"></p>
+<p><strong>控件基准线约束的操作：</strong><br><img src="http://o8wshxdfk.bkt.clouddn.com/e70295e04cb3aa4c.png" alt="Baseline Constraint Handle"></p>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p>需要进一步了解或者感兴趣的小伙伴可以直接去看看<br><strong><a href="https://github.com/googlecodelabs/constraint-layout" target="_blank" rel="external">constraint-layout</a></strong> 这是Android官方提供的代码示例.</p>
 <blockquote>
 <p>关于 ConstraintLayout 的用法这里只简单做个介绍，目前 <code>ConstraintLayout</code> 还处在一个快速迭代更新的阶段，所以并不推荐在实际项目中去使用，就我个人的实际体验上，确实还是存在着一些问题，当然这并不影响我们去了解它。</p>
 </blockquote>
-<h3 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h3><p>正如 ConstraintLayout 官方介绍视频中多次强调的那一句话：</p>
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>正如 ConstraintLayout 官方介绍视频中多次强调的那一句话：</p>
 <blockquote>
 <p><strong>Our job is to make your life easier.</strong></p>
 </blockquote>
@@ -573,7 +571,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#引子"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ConstraintLayout-简介"><span class="nav-number">2.</span> <span class="nav-text">ConstraintLayout 简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ConstraintLayout-使用"><span class="nav-number">3.</span> <span class="nav-text">ConstraintLayout 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#显示"><span class="nav-number">3.1.</span> <span class="nav-text">显示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Constraints"><span class="nav-number">3.2.</span> <span class="nav-text">Constraints</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#感想"><span class="nav-number">4.</span> <span class="nav-text">感想</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引子"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ConstraintLayout-简介"><span class="nav-number">2.</span> <span class="nav-text">ConstraintLayout 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ConstraintLayout-使用"><span class="nav-number">3.</span> <span class="nav-text">ConstraintLayout 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作"><span class="nav-number">3.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示"><span class="nav-number">3.2.</span> <span class="nav-text">显示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Constraints"><span class="nav-number">3.3.</span> <span class="nav-text">Constraints</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#操作类型的说明"><span class="nav-number">3.3.1.</span> <span class="nav-text">操作类型的说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#示例"><span class="nav-number">3.3.2.</span> <span class="nav-text">示例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#感想"><span class="nav-number">4.</span> <span class="nav-text">感想</span></a></li></ol></div>
             
           </div>
         </section>
