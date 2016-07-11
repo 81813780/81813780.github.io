@@ -1,0 +1,867 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Image compression," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="д��ǰ��Android�����е�ͼ��ѹ����һ������Ҫ�Ĳ��֡�����ƪ���»������Ǵ�����һ���Ƕ�����ʶAndroidƽ̨�µ�ͼ��ѹ�����Ż���
+��ƪ���¸��ʺϺ�����ʦһ�����������ԣ�����������������ʦ�Ǻû��ѵĻ������������������������ȣ����ϼ�����………��ʵ��Ҫ�">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google I/O 2016 �ʼ�֮ͼ��ѹ��">
+<meta property="og:url" content="http://yoursite.com/2016/07/11/Google IO 2016 笔记之图像压缩/index.html">
+<meta property="og:site_name" content="Jack Wang">
+<meta property="og:description" content="д��ǰ��Android�����е�ͼ��ѹ����һ������Ҫ�Ĳ��֡�����ƪ���»������Ǵ�����һ���Ƕ�����ʶAndroidƽ̨�µ�ͼ��ѹ�����Ż���
+��ƪ���¸��ʺϺ�����ʦһ�����������ԣ�����������������ʦ�Ǻû��ѵĻ������������������������ȣ����ϼ�����………��ʵ��Ҫ�">
+<meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708165530.png">
+<meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708192322.png">
+<meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708171846.png">
+<meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708173340.png">
+<meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708201222.png">
+<meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708173845.png">
+<meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708174505.png">
+<meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708175236.png">
+<meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708180126.png">
+<meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160711101816.png">
+<meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160711101849.png">
+<meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160711102937.png">
+<meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708181353.png">
+<meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708182427.png">
+<meta property="og:updated_time" content="2016-07-11T06:14:52.084Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Google I/O 2016 �ʼ�֮ͼ��ѹ��">
+<meta name="twitter:description" content="д��ǰ��Android�����е�ͼ��ѹ����һ������Ҫ�Ĳ��֡�����ƪ���»������Ǵ�����һ���Ƕ�����ʶAndroidƽ̨�µ�ͼ��ѹ�����Ż���
+��ƪ���¸��ʺϺ�����ʦһ�����������ԣ�����������������ʦ�Ǻû��ѵĻ������������������������ȣ����ϼ�����………��ʵ��Ҫ�">
+<meta name="twitter:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708165530.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/07/11/Google IO 2016 笔记之图像压缩/"/>
+
+  <title> Google I/O 2016 �ʼ�֮ͼ��ѹ�� | Jack Wang </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?5bda4c415924a21790ddb161e0a7ce40";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Jack Wang</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Learning How to Learn</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Google I/O 2016 �ʼ�֮ͼ��ѹ��
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-11T14:03:39+08:00" content="2016-07-11">
+              2016-07-11
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/11/Google IO 2016 笔记之图像压缩/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/11/Google IO 2016 笔记之图像压缩/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/07/11/Google IO 2016 笔记之图像压缩/" class="leancloud_visitors" data-flag-title="Google I/O 2016 �ʼ�֮ͼ��ѹ��">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="д��j��"><a href="#д��j��" class="headerlink" title="д��ǰ��"></a>д��ǰ��</h2><p>Android�����е�ͼ��ѹ����һ������Ҫ�Ĳ��֡�����ƪ���»������Ǵ�����һ���Ƕ�����ʶAndroidƽ̨�µ�ͼ��ѹ�����Ż���</p>
+<p>��ƪ���¸��ʺϺ�����ʦһ�����������ԣ�����������������ʦ�Ǻû��ѵĻ������������������������ȣ����ϼ�����…<br>…<br>…<br>��ʵ��Ҫ�в���ͼ��רҵ���������ص�֪ʶ�����߲�û��ȥ�������ܣ��������ޣ�������������ʦ�İ����������˽��ĸ�͸����</p>
+<h2 id="����"><a href="#����" class="headerlink" title="����"></a>����</h2><p>�ճ�������Android�����нӴ�����ͼ������Ҫ���������ָ�ʽ��</p>
+<p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708165530.png" alt="1.png"></p>
+<p><strong>1. PNG</strong><br>PNG��������Դ�ڡ�����ֲ����ͼ�θ�ʽ(Portable Network Graphic Format��PNG)����PNG�����洢<a href="http://baike.baidu.com/view/1549178.htm" target="_blank" rel="external">�Ҷ�ͼ��</a>ʱ���Ҷ�ͼ�������ȿɶൽ16λ���洢��ɫͼ��ʱ����ɫͼ�������ȿɶൽ48λ�����һ��ɴ洢�ൽ16λ��<a href="http://baike.baidu.com/view/2211519.htm" target="_blank" rel="external">��ͨ��</a>���ݡ�PNGʹ�ô�LZ77��������������ѹ���㷨��һ��Ӧ����JAVA������<a href="http://baike.baidu.com/view/828.htm" target="_blank" rel="external">��ҳ</a>��S60�����У�ԭ������ѹ���ȸߣ������ļ�����С��</p>
+<p><strong>2. VectorDrawable</strong><br>Android ƽ̨��ʸ��ͼ�� ��</p>
+<p><strong>3.  JPG</strong><br>JPGȫ����<a href="http://baike.baidu.com/view/7679.htm" target="_blank" rel="external">JPEG</a>��JPEGͼƬ�� 24 λ��ɫ�洢����λͼ��JPEG ����ƽ̨�޹صĸ�ʽ��֧�����߼�����ѹ��������������<a href="http://baike.baidu.com/subview/786588/12546220.htm" target="_blank" rel="external">ѹ��</a>����<a href="http://baike.baidu.com/view/860404.htm" target="_blank" rel="external">����</a>�ġ�����ʽ JPEG �ļ�֧�ֽ�����</p>
+<p><strong>4. WebP��ʽ</strong><br><a href="http://baike.baidu.com/view/1931.htm" target="_blank" rel="external">�ȸ�</a>��<a href="http://baike.baidu.com/view/105.htm" target="_blank" rel="external">Google</a>��������һ��ּ�ڼӿ�ͼƬ�����ٶȵ�ͼƬ��ʽ��ͼƬѹ��������Լֻ��JPEG��2/3�����ܽ�ʡ�����ķ�����������Դ�����ݿռ䡣Facebook Ebay��֪����վ�Ѿ���ʼ���Բ�ʹ��WebP��ʽ��</p>
+<blockquote>
+<p>������˵��ͼ��ѹ�����ǹ������������ָ�ʽ</p>
+</blockquote>
+<hr>
+<h2 id="����PNGͼ����ѹ��"><a href="#����PNGͼ����ѹ��" class="headerlink" title="����PNGͼ����ѹ��"></a>����PNGͼ����ѹ��</h2><p>PNGͼ����Android������ʹ�õıȽϹ㷺�ģ�������ѹ�����Ż��ķ�ʽҲ��Ӧ�Ƚ϶ࡣ</p>
+<p><strong>1. AAPT</strong><br><strong>aapt</strong>ȫ��Android Asset Packaging Tool��ֱ���Ļ�������Android��Դ�������ߣ�����Android�ٷ��ṩ��һ���������ߣ������ڽ����ǵ�Android��Ŀ������apk�Ĺ����У��Ѿ��Զ�������������һ�ζ���PNGͼƬ��ѹ������������Ȥ��ͬѧ�����Խ�Android��ĿԴ���е���ԴͼƬ��apk�н�ѹ��������ԴͼƬ�Ĵ�С�Ա�һ�£����ᷢ��apk�е�ͼƬ��������Դ���е�ͼƬҪС�������źܶ�С���鶼û��ע�⵽��һ���� :)</p>
+<p> ���ڹٷ���Ƶ�еĽ��ܣ�aapt���߶���ͼ��ѹ��ֻ���������£�<strong>specifically</strong> , <strong>no more</strong> , <strong>no less</strong><br>������˵�Ļ����Ƕ�ͼ�������˶��δ���������ͼ��ʾ��</p>
+<p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708192322.png" alt="2.png"></p>
+<p><strong>2. ����ͼ��ɫ��λ��</strong><br>��������ͼ���ļ���ɫ�ʱȽϵ�һ����ô������ͨ������ͼ����λ��������ѹ��������ͼ��ʾ��</p>
+<p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708171846.png" alt="3.png"></p>
+<blockquote>
+<p>ע�⣺����ɫ��λ����ǰ���ǣ�������Ӱ���û���ͼ���Ĺۿ���</p>
+</blockquote>
+<p><strong>3.  PNG ѹ���Ż�����</strong><br>�����кܶ�����PNG��ʽ��ѹ���Ż����ߣ������Ե�Google������ <strong>PNG Optimizer</strong> ���������ܶ����ص����ϡ�<br>����Google�ٷ�Ҳ��һ����Դ����Ŀ<strong>Zopfli</strong>����deflateѹ���㷨����һ��ʵ�֡�<br><strong>������Ҫע������</strong>����ʱ��ͨ����������ѹ������PNGͼ�����پ���aapt���ߵ�ѹ����������Ӧ�û���С��</p>
+<p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708173340.png" alt="4.png"></p>
+<p><strong>WTF !!!</strong></p>
+<p>�𼱣�������Ҫ��Gradle�ļ�����һ�����ã�</p>
+<p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708201222.png" alt="5.png"></p>
+<blockquote>
+<p>�����Ƽ�һ������<strong><a href="https://github.com/chenenyu/img-optimizer-gradle-plugin" target="_blank" rel="external">img-optimizer-gradle-plugin</a></strong>��һ�������Ż�pngͼƬ��gradle��������Ч����APK������֧�ּ���ѹ��������ѹ����</p>
+</blockquote>
+<p><strong>4. ͨ������������PNGͼ</strong><br>��������һ��Բ�ε�ͼ����Ҫչʾ���û�������ʹ��PNGͼƬ�Ļ���</p>
+<p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708173845.png" alt="6.png"></p>
+<p>������ͨ�����뻭������</p>
+<p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708174505.png" alt="7.png"></p>
+<p>û�жԱȣ���û���˺���</p>
+<p><strong>5. ʸ��ͼ����PNGͼ</strong></p>
+<p>������ʸ��ͼȥ����PNG���ٷ���Ƶ�н�����һ��λͼת��Ϊʸ��ͼ�Ĺ���<strong><a href="http://potrace.sourceforge.net/" target="_blank" rel="external">Potrace</a></strong> ��</p>
+<p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708175236.png" alt="8.png"></p>
+<blockquote>
+<p>ʸ��ͼͬ��Ҳ�����پ�������ת����VectorDrawable��ʽ����size����һ����С��������һ����Դ��<strong><a href="https://github.com/inloop/svg2android" target="_blank" rel="external">svg2android</a></strong>�����Խ�svgת��ΪVectorDrawable ��</p>
+</blockquote>
+<h2 id="����VectorDrawable"><a href="#����VectorDrawable" class="headerlink" title="����VectorDrawable"></a>����VectorDrawable</h2><p>VectorDrawable��ʸ��ͼ�Σ���Android�ٷ��Ƴ�һ���µ����ԣ�Ϊ�����ṩ�����Ӹ���ʸ��ͼ�ε�ǿ�����ܣ�ͬʱҲ�ṩ�˶�����ʾ��Щͼ�εķ�����ʸ��ͼ�εĺô��ǷŴ󲻻�ʧ�棬������Ӧ��ͬ�ֱ��ʵ���Ļ��<strong>���ԣ�������ͼ��ѹ�����Ż�����ѡ�������ܵ�ȥʹ�ðɡ�</strong></p>
+<blockquote>
+<p>����VectorDrawable�Ľ��ܺ�ʹ�ã����ﲻ�������Ľ��ܡ�</p>
+</blockquote>
+<h2 id="����JPGͼ����ѹ��"><a href="#����JPGͼ����ѹ��" class="headerlink" title="����JPGͼ����ѹ��"></a>����JPGͼ����ѹ��</h2><p>��̸������JPG��ͼ����ʱ�򣬹ٷ���Ƶ�еĽ�����Colt McAnlis����˵��:<br><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708180126.png" alt="9.png"></p>
+<blockquote>
+<p>By the way ,Colt McAnlis����Ƶ�����ǳ����м��飬Ҳ����Ĭ���Ҹ��˱Ƚ�ϲ������Google �ٷ���<a href="https://www.youtube.com/playlist?list=PLWz5rJ2EKKc9CBxr3BVjPTPoDPLdPIFCE" target="_blank" rel="external">Android Performance Patterns</a>�������Ż���Ƶ���ϼ����кܶ��������������ģ�����ǿ���Ƽ�����Ȥ��ͬѧȥ������ </p>
+</blockquote>
+<p>JPG������PNG��ʽ��ͼ�񣬸��Ӹ��ӣ�����һ�㲻�Ƽ�ֱ��ʹ��JPGͼ�񡣹���JPGͼ����ѹ����ʽ�����¼��֣�</p>
+<p><strong>1. ����JPGͼ��������</strong></p>
+<p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160711101816.png" alt="10.png"></p>
+<p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160711101849.png" alt="11.png"></p>
+<p>��������ͼƬ��ͨ����ͼƬ���������ͣ�ͼƬ��С��263k���ٵ�25k��ѹ���ķǳ��ɹۣ���Ȼ���������е�JPGͼ�����������ֽ��������ķ�ʽ����Ϊ���ȣ�����Ҫ�ڱ�֤�ڲ�Ӱ�������۹ۿ���Ч����ǰ���£���ȥ����ͼ����������</p>
+<p>���ǣ�����������һ�����⣬�������кܶ���������ͼƬ��Ȼ�����ֶ���һ����ͨ���ȶ�ȥ���ͣ�������Ч�ʻ��ǳ����¡����Թٷ���Ƶ��Ϊ���ַ�ʽ�ṩ��һ��ͼ���������ù�����</p>
+<p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160711102937.png" alt="12.png"></p>
+<p><strong>2. JPG ѹ���Ż�����</strong></p>
+<p>ͬ���ģ����Ϲ���JPGͼ����һЩѹ���Ż�����Ҳ�ܶ࣬������Google������<strong>JPG Optimizer</strong></p>
+<p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708181353.png" alt="13.png"></p>
+<h2 id="����WebP"><a href="#����WebP" class="headerlink" title="����WebP"></a>����WebP</h2><p><a href="http://baike.baidu.com/view/1931.htm" target="_blank" rel="external">�ȸ�</a>��<a href="http://baike.baidu.com/view/105.htm" target="_blank" rel="external">Google</a>��������һ��ּ�ڼӿ�ͼƬ�����ٶȵ�ͼƬ��ʽ�����ԣ�ǿ���Ƽ�ʹ��WebPͼ�����滻PNG��JPGͼ����</p>
+<p>�����Ƽ�һ����Դ��<strong><a href="https://github.com/AndroidDeveloperLB/WebpifyYourAndroidApp" target="_blank" rel="external">WebpifyYourAndroidApp</a></strong>�����Խ�PNG����JPGת��ΪWebPͼ����</p>
+<h2 id="����-1"><a href="#����-1" class="headerlink" title="����"></a>����</h2><p>������������������̫�࣬�ǲ�ס�Ļ��� û��ϵ���ٷ���ƵΪ�����ṩһ���ܽ�ͼ��</p>
+<p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708182427.png" alt="14.png"></p>
+<p>������˵����ͼ��ѹ�����Ż��ĽǶ������Ļ���������ѡ��ͼ����ʱ����Ӧ�����ǵ����ȼ����£�<br><strong>VectorDrawable&gt;WebP&gt;PNG&gt;JPG</strong></p>
+<blockquote>
+<p>������Ϊ�����漰���ܶ��й�ͼ�����ص�רҵ֪ʶ�������д����ĵط�����ӭָ�� :)</p>
+</blockquote>
+<h2 id="�ο�"><a href="#�ο�" class="headerlink" title="�ο�"></a>�ο�</h2><p><a href="https://www.youtube.com/watch?v=r_LpCi6DQME&amp;index=2&amp;list=PLWz5rJ2EKKc8jQTUYvIfqA9lMvSGQWtte" target="_blank" rel="external">Image compression for Android developers - Google I/O 2016</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Image-compression/" rel="tag">#Image compression</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/21/Google IO 2016 笔记之Layout新世界-ConstraintLayout/" rel="next" title="Google I/O 2016 笔记之Layout新世界-ConstraintLayout">
+                <i class="fa fa-chevron-left"></i> Google I/O 2016 笔记之Layout新世界-ConstraintLayout
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/07/11/Google IO 2016 笔记之图像压缩/"
+     data-title="Google I/O 2016 �ʼ�֮ͼ��ѹ��"
+     data-content=""
+     data-url="http://yoursite.com/2016/07/11/Google IO 2016 笔记之图像压缩/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/11/Google IO 2016 笔记之图像压缩/"
+           data-title="Google I/O 2016 �ʼ�֮ͼ��ѹ��" data-url="http://yoursite.com/2016/07/11/Google IO 2016 笔记之图像压缩/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="Jack Wang" />
+          <p class="site-author-name" itemprop="name">Jack Wang</p>
+          <p class="site-description motion-element" itemprop="description">迅雷中宵激，惊电光夜舒</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/81813780" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/601265161" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/wang-hai-long-5-62" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/b56c1fe69b47/timeline" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#д��j��"><span class="nav-number">1.</span> <span class="nav-text">д��ǰ��</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#����"><span class="nav-number">2.</span> <span class="nav-text">����</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#����PNGͼ����ѹ��"><span class="nav-number">3.</span> <span class="nav-text">����PNGͼ����ѹ��</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#����VectorDrawable"><span class="nav-number">4.</span> <span class="nav-text">����VectorDrawable</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#����JPGͼ����ѹ��"><span class="nav-number">5.</span> <span class="nav-text">����JPGͼ����ѹ��</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#����WebP"><span class="nav-number">6.</span> <span class="nav-text">����WebP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#����-1"><span class="nav-number">7.</span> <span class="nav-text">����</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#�ο�"><span class="nav-number">8.</span> <span class="nav-text">�ο�</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack Wang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hlong"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("GadDvVx6tu2rpGhmYYrCGbWY-gzGzoHsz", "PiqnLjaS1rbUImxsjb51y1VL");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
