@@ -84,14 +84,14 @@
 
 
 
-<meta name="description" content="д��ǰ��Android�����е�ͼ��ѹ����һ������Ҫ�Ĳ��֡�����ƪ���»������Ǵ�����һ���Ƕ�����ʶAndroidƽ̨�µ�ͼ��ѹ�����Ż���
-��ƪ���¸��ʺϺ�����ʦһ�����������ԣ�����������������ʦ�Ǻû��ѵĻ������������������������ȣ����ϼ�����………��ʵ��Ҫ�">
+<meta name="description" content="写在前面Android开发中的图像压缩是一个很重要的部分。而这篇文章会让我们从另外一个角度来认识Android平台下的图像压缩和优化。
+这篇文章更适合和设计师一起来看，所以，如果你和你的设计师是好基友的话，不妨叫上他，倒两杯咖啡，花上几分钟………其实主要有部分图像专业处理上相关的知识，笔者并没有去深入介绍（能力有限），所以有设计师的帮助会让你了解的更透彻。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Google I/O 2016 �ʼ�֮ͼ��ѹ��">
+<meta property="og:title" content="Google I/O 2016 笔记之图像压缩">
 <meta property="og:url" content="http://yoursite.com/2016/07/11/Google IO 2016 笔记之图像压缩/index.html">
 <meta property="og:site_name" content="Jack Wang">
-<meta property="og:description" content="д��ǰ��Android�����е�ͼ��ѹ����һ������Ҫ�Ĳ��֡�����ƪ���»������Ǵ�����һ���Ƕ�����ʶAndroidƽ̨�µ�ͼ��ѹ�����Ż���
-��ƪ���¸��ʺϺ�����ʦһ�����������ԣ�����������������ʦ�Ǻû��ѵĻ������������������������ȣ����ϼ�����………��ʵ��Ҫ�">
+<meta property="og:description" content="写在前面Android开发中的图像压缩是一个很重要的部分。而这篇文章会让我们从另外一个角度来认识Android平台下的图像压缩和优化。
+这篇文章更适合和设计师一起来看，所以，如果你和你的设计师是好基友的话，不妨叫上他，倒两杯咖啡，花上几分钟………其实主要有部分图像专业处理上相关的知识，笔者并没有去深入介绍（能力有限），所以有设计师的帮助会让你了解的更透彻。">
 <meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708165530.png">
 <meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708192322.png">
 <meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708171846.png">
@@ -106,11 +106,11 @@
 <meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160711102937.png">
 <meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708181353.png">
 <meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708182427.png">
-<meta property="og:updated_time" content="2016-07-11T06:14:52.084Z">
+<meta property="og:updated_time" content="2016-07-11T06:17:45.182Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Google I/O 2016 �ʼ�֮ͼ��ѹ��">
-<meta name="twitter:description" content="д��ǰ��Android�����е�ͼ��ѹ����һ������Ҫ�Ĳ��֡�����ƪ���»������Ǵ�����һ���Ƕ�����ʶAndroidƽ̨�µ�ͼ��ѹ�����Ż���
-��ƪ���¸��ʺϺ�����ʦһ�����������ԣ�����������������ʦ�Ǻû��ѵĻ������������������������ȣ����ϼ�����………��ʵ��Ҫ�">
+<meta name="twitter:title" content="Google I/O 2016 笔记之图像压缩">
+<meta name="twitter:description" content="写在前面Android开发中的图像压缩是一个很重要的部分。而这篇文章会让我们从另外一个角度来认识Android平台下的图像压缩和优化。
+这篇文章更适合和设计师一起来看，所以，如果你和你的设计师是好基友的话，不妨叫上他，倒两杯咖啡，花上几分钟………其实主要有部分图像专业处理上相关的知识，笔者并没有去深入介绍（能力有限），所以有设计师的帮助会让你了解的更透彻。">
 <meta name="twitter:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708165530.png">
 
 
@@ -134,7 +134,7 @@
 
   <link rel="canonical" href="http://yoursite.com/2016/07/11/Google IO 2016 笔记之图像压缩/"/>
 
-  <title> Google I/O 2016 �ʼ�֮ͼ��ѹ�� | Jack Wang </title>
+  <title> Google I/O 2016 笔记之图像压缩 | Jack Wang </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -274,7 +274,7 @@
             
             
               
-                Google I/O 2016 �ʼ�֮ͼ��ѹ��
+                Google I/O 2016 笔记之图像压缩
               
             
           </h1>
@@ -308,7 +308,7 @@
 
           
           
-             <span id="/2016/07/11/Google IO 2016 笔记之图像压缩/" class="leancloud_visitors" data-flag-title="Google I/O 2016 �ʼ�֮ͼ��ѹ��">
+             <span id="/2016/07/11/Google IO 2016 笔记之图像压缩/" class="leancloud_visitors" data-flag-title="Google I/O 2016 笔记之图像压缩">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -330,73 +330,74 @@
       
 
       
-        <h2 id="д��j��"><a href="#д��j��" class="headerlink" title="д��ǰ��"></a>д��ǰ��</h2><p>Android�����е�ͼ��ѹ����һ������Ҫ�Ĳ��֡�����ƪ���»������Ǵ�����һ���Ƕ�����ʶAndroidƽ̨�µ�ͼ��ѹ�����Ż���</p>
-<p>��ƪ���¸��ʺϺ�����ʦһ�����������ԣ�����������������ʦ�Ǻû��ѵĻ������������������������ȣ����ϼ�����…<br>…<br>…<br>��ʵ��Ҫ�в���ͼ��רҵ���������ص�֪ʶ�����߲�û��ȥ�������ܣ��������ޣ�������������ʦ�İ����������˽��ĸ�͸����</p>
-<h2 id="����"><a href="#����" class="headerlink" title="����"></a>����</h2><p>�ճ�������Android�����нӴ�����ͼ������Ҫ���������ָ�ʽ��</p>
+        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>Android开发中的图像压缩是一个很重要的部分。而这篇文章会让我们从另外一个角度来认识Android平台下的图像压缩和优化。</p>
+<p>这篇文章更适合和设计师一起来看，所以，如果你和你的设计师是好基友的话，不妨叫上他，倒两杯咖啡，花上几分钟…<br>…<br>…<br>其实主要有部分图像专业处理上相关的知识，笔者并没有去深入介绍（能力有限），所以有设计师的帮助会让你了解的更透彻。</p>
+<a id="more"></a>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>日常我们在Android开发中接触到的图像，主要有以下四种格式：</p>
 <p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708165530.png" alt="1.png"></p>
-<p><strong>1. PNG</strong><br>PNG��������Դ�ڡ�����ֲ����ͼ�θ�ʽ(Portable Network Graphic Format��PNG)����PNG�����洢<a href="http://baike.baidu.com/view/1549178.htm" target="_blank" rel="external">�Ҷ�ͼ��</a>ʱ���Ҷ�ͼ�������ȿɶൽ16λ���洢��ɫͼ��ʱ����ɫͼ�������ȿɶൽ48λ�����һ��ɴ洢�ൽ16λ��<a href="http://baike.baidu.com/view/2211519.htm" target="_blank" rel="external">��ͨ��</a>���ݡ�PNGʹ�ô�LZ77��������������ѹ���㷨��һ��Ӧ����JAVA������<a href="http://baike.baidu.com/view/828.htm" target="_blank" rel="external">��ҳ</a>��S60�����У�ԭ������ѹ���ȸߣ������ļ�����С��</p>
-<p><strong>2. VectorDrawable</strong><br>Android ƽ̨��ʸ��ͼ�� ��</p>
-<p><strong>3.  JPG</strong><br>JPGȫ����<a href="http://baike.baidu.com/view/7679.htm" target="_blank" rel="external">JPEG</a>��JPEGͼƬ�� 24 λ��ɫ�洢����λͼ��JPEG ����ƽ̨�޹صĸ�ʽ��֧�����߼�����ѹ��������������<a href="http://baike.baidu.com/subview/786588/12546220.htm" target="_blank" rel="external">ѹ��</a>����<a href="http://baike.baidu.com/view/860404.htm" target="_blank" rel="external">����</a>�ġ�����ʽ JPEG �ļ�֧�ֽ�����</p>
-<p><strong>4. WebP��ʽ</strong><br><a href="http://baike.baidu.com/view/1931.htm" target="_blank" rel="external">�ȸ�</a>��<a href="http://baike.baidu.com/view/105.htm" target="_blank" rel="external">Google</a>��������һ��ּ�ڼӿ�ͼƬ�����ٶȵ�ͼƬ��ʽ��ͼƬѹ��������Լֻ��JPEG��2/3�����ܽ�ʡ�����ķ�����������Դ�����ݿռ䡣Facebook Ebay��֪����վ�Ѿ���ʼ���Բ�ʹ��WebP��ʽ��</p>
+<p><strong>1. PNG</strong><br>PNG的名称来源于“可移植网络图形格式(Portable Network Graphic Format，PNG)”，PNG用来存储<a href="http://baike.baidu.com/view/1549178.htm" target="_blank" rel="external">灰度图像</a>时，灰度图像的深度可多到16位，存储彩色图像时，彩色图像的深度可多到48位，并且还可存储多到16位的<a href="http://baike.baidu.com/view/2211519.htm" target="_blank" rel="external">α通道</a>数据。PNG使用从LZ77派生的无损数据压缩算法，一般应用于JAVA程序、<a href="http://baike.baidu.com/view/828.htm" target="_blank" rel="external">网页</a>或S60程序中，原因是它压缩比高，生成文件体积小。</p>
+<p><strong>2. VectorDrawable</strong><br>Android 平台的矢量图形 。</p>
+<p><strong>3.  JPG</strong><br>JPG全名是<a href="http://baike.baidu.com/view/7679.htm" target="_blank" rel="external">JPEG</a>。JPEG图片以 24 位颜色存储单个位图。JPEG 是与平台无关的格式，支持最高级别的压缩，不过，这种<a href="http://baike.baidu.com/subview/786588/12546220.htm" target="_blank" rel="external">压缩</a>是有<a href="http://baike.baidu.com/view/860404.htm" target="_blank" rel="external">损耗</a>的。渐近式 JPEG 文件支持交错。</p>
+<p><strong>4. WebP格式</strong><br><a href="http://baike.baidu.com/view/1931.htm" target="_blank" rel="external">谷歌</a>（<a href="http://baike.baidu.com/view/105.htm" target="_blank" rel="external">Google</a>）开发的一种旨在加快图片加载速度的图片格式。图片压缩体积大约只有JPEG的2/3，并能节省大量的服务器带宽资源和数据空间。Facebook Ebay等知名网站已经开始测试并使用WebP格式。</p>
 <blockquote>
-<p>������˵��ͼ��ѹ�����ǹ������������ָ�ʽ</p>
+<p>本文所说的图像压缩就是关于以上这四种格式</p>
 </blockquote>
 <hr>
-<h2 id="����PNGͼ����ѹ��"><a href="#����PNGͼ����ѹ��" class="headerlink" title="����PNGͼ����ѹ��"></a>����PNGͼ����ѹ��</h2><p>PNGͼ����Android������ʹ�õıȽϹ㷺�ģ�������ѹ�����Ż��ķ�ʽҲ��Ӧ�Ƚ϶ࡣ</p>
-<p><strong>1. AAPT</strong><br><strong>aapt</strong>ȫ��Android Asset Packaging Tool��ֱ���Ļ�������Android��Դ�������ߣ�����Android�ٷ��ṩ��һ���������ߣ������ڽ����ǵ�Android��Ŀ������apk�Ĺ����У��Ѿ��Զ�������������һ�ζ���PNGͼƬ��ѹ������������Ȥ��ͬѧ�����Խ�Android��ĿԴ���е���ԴͼƬ��apk�н�ѹ��������ԴͼƬ�Ĵ�С�Ա�һ�£����ᷢ��apk�е�ͼƬ��������Դ���е�ͼƬҪС�������źܶ�С���鶼û��ע�⵽��һ���� :)</p>
-<p> ���ڹٷ���Ƶ�еĽ��ܣ�aapt���߶���ͼ��ѹ��ֻ���������£�<strong>specifically</strong> , <strong>no more</strong> , <strong>no less</strong><br>������˵�Ļ����Ƕ�ͼ�������˶��δ���������ͼ��ʾ��</p>
+<h2 id="关于PNG图像的压缩"><a href="#关于PNG图像的压缩" class="headerlink" title="关于PNG图像的压缩"></a>关于PNG图像的压缩</h2><p>PNG图像是Android开发中使用的比较广泛的，而它的压缩和优化的方式也相应比较多。</p>
+<p><strong>1. AAPT</strong><br><strong>aapt</strong>全称Android Asset Packaging Tool，直译的话，就是Android资源打包工具，这是Android官方提供的一个打包工具，而它在将我们的Android项目打包成apk的过程中，已经自动帮我们完成了一次对于PNG图片的压缩处理，有兴趣的同学，可以将Android项目源码中的资源图片与apk中解压出来的资源图片的大小对比一下，你会发现apk中的图片会比我们源码中的图片要小，我相信很多小伙伴都没有注意到这一点吧 :)</p>
+<p> 而在官方视频中的介绍，aapt工具对于图像压缩只做了三件事：<strong>specifically</strong> , <strong>no more</strong> , <strong>no less</strong><br>简单来说的话就是对图像进行了二次处理，如下图所示：</p>
 <p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708192322.png" alt="2.png"></p>
-<p><strong>2. ����ͼ��ɫ��λ��</strong><br>��������ͼ���ļ���ɫ�ʱȽϵ�һ����ô������ͨ������ͼ����λ��������ѹ��������ͼ��ʾ��</p>
+<p><strong>2. 降低图像色彩位数</strong><br>如果你的图像文件的色彩比较单一，那么你可以通过降低图像的位数来进行压缩，如下图所示：</p>
 <p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708171846.png" alt="3.png"></p>
 <blockquote>
-<p>ע�⣺����ɫ��λ����ǰ���ǣ�������Ӱ���û���ͼ���Ĺۿ���</p>
+<p>注意：降低色彩位数的前提是，并不会影响用户对图像的观看。</p>
 </blockquote>
-<p><strong>3.  PNG ѹ���Ż�����</strong><br>�����кܶ�����PNG��ʽ��ѹ���Ż����ߣ������Ե�Google������ <strong>PNG Optimizer</strong> ���������ܶ����ص����ϡ�<br>����Google�ٷ�Ҳ��һ����Դ����Ŀ<strong>Zopfli</strong>����deflateѹ���㷨����һ��ʵ�֡�<br><strong>������Ҫע������</strong>����ʱ��ͨ����������ѹ������PNGͼ�����پ���aapt���ߵ�ѹ����������Ӧ�û���С��</p>
+<p><strong>3.  PNG 压缩优化工具</strong><br>网上有很多关于PNG格式的压缩优化工具，你可以到Google上搜索 <strong>PNG Optimizer</strong> ，会出来很多相关的资料。<br>另外Google官方也有一个开源的项目<strong>Zopfli</strong>，是deflate压缩算法的另一种实现。<br><strong>这里需要注意的是</strong>，有时候通过其他工具压缩后的PNG图像，再经过aapt工具的压缩，恩，那应该会更小？</p>
 <p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708173340.png" alt="4.png"></p>
 <p><strong>WTF !!!</strong></p>
-<p>�𼱣�������Ҫ��Gradle�ļ�����һ�����ã�</p>
+<p>别急，这里需要对Gradle文件添加一行配置：</p>
 <p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708201222.png" alt="5.png"></p>
 <blockquote>
-<p>�����Ƽ�һ������<strong><a href="https://github.com/chenenyu/img-optimizer-gradle-plugin" target="_blank" rel="external">img-optimizer-gradle-plugin</a></strong>��һ�������Ż�pngͼƬ��gradle��������Ч����APK������֧�ּ���ѹ��������ѹ����</p>
+<p>这里推荐一个插件<strong><a href="https://github.com/chenenyu/img-optimizer-gradle-plugin" target="_blank" rel="external">img-optimizer-gradle-plugin</a></strong>，一款用于优化png图片的gradle插件，有效减少APK体积，支持极限压缩和无损压缩。</p>
 </blockquote>
-<p><strong>4. ͨ������������PNGͼ</strong><br>��������һ��Բ�ε�ͼ����Ҫչʾ���û�������ʹ��PNGͼƬ�Ļ���</p>
+<p><strong>4. 通过代码来代替PNG图</strong><br>假设你有一个圆形的图像需要展示很用户，如果使用PNG图片的话：</p>
 <p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708173845.png" alt="6.png"></p>
-<p>������ͨ�����뻭������</p>
+<p>如果你通过代码画出来：</p>
 <p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708174505.png" alt="7.png"></p>
-<p>û�жԱȣ���û���˺���</p>
-<p><strong>5. ʸ��ͼ����PNGͼ</strong></p>
-<p>������ʸ��ͼȥ����PNG���ٷ���Ƶ�н�����һ��λͼת��Ϊʸ��ͼ�Ĺ���<strong><a href="http://potrace.sourceforge.net/" target="_blank" rel="external">Potrace</a></strong> ��</p>
+<p>没有对比，就没有伤害。</p>
+<p><strong>5. 矢量图代替PNG图</strong></p>
+<p>关于用矢量图去代替PNG，官方视频中介绍了一个位图转换为矢量图的工具<strong><a href="http://potrace.sourceforge.net/" target="_blank" rel="external">Potrace</a></strong> 。</p>
 <p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708175236.png" alt="8.png"></p>
 <blockquote>
-<p>ʸ��ͼͬ��Ҳ�����پ�������ת����VectorDrawable��ʽ����size����һ����С��������һ����Դ��<strong><a href="https://github.com/inloop/svg2android" target="_blank" rel="external">svg2android</a></strong>�����Խ�svgת��ΪVectorDrawable ��</p>
+<p>矢量图同样也可以再经过处理转换成VectorDrawable格式，而size会进一步变小。这里有一个开源库<strong><a href="https://github.com/inloop/svg2android" target="_blank" rel="external">svg2android</a></strong>，可以将svg转换为VectorDrawable 。</p>
 </blockquote>
-<h2 id="����VectorDrawable"><a href="#����VectorDrawable" class="headerlink" title="����VectorDrawable"></a>����VectorDrawable</h2><p>VectorDrawable��ʸ��ͼ�Σ���Android�ٷ��Ƴ�һ���µ����ԣ�Ϊ�����ṩ�����Ӹ���ʸ��ͼ�ε�ǿ�����ܣ�ͬʱҲ�ṩ�˶�����ʾ��Щͼ�εķ�����ʸ��ͼ�εĺô��ǷŴ󲻻�ʧ�棬������Ӧ��ͬ�ֱ��ʵ���Ļ��<strong>���ԣ�������ͼ��ѹ�����Ż�����ѡ�������ܵ�ȥʹ�ðɡ�</strong></p>
+<h2 id="关于VectorDrawable"><a href="#关于VectorDrawable" class="headerlink" title="关于VectorDrawable"></a>关于VectorDrawable</h2><p>VectorDrawable（矢量图形）是Android官方推出一个新的特性，为我们提供了添加复杂矢量图形的强大功能，同时也提供了动画显示这些图形的方法。矢量图形的好处是放大不会失真，可以适应不同分辨率的屏幕。<strong>所以，它是你图像压缩和优化的首选，尽可能的去使用吧。</strong></p>
 <blockquote>
-<p>����VectorDrawable�Ľ��ܺ�ʹ�ã����ﲻ�������Ľ��ܡ�</p>
+<p>关于VectorDrawable的介绍和使用，这里不做过多的介绍。</p>
 </blockquote>
-<h2 id="����JPGͼ����ѹ��"><a href="#����JPGͼ����ѹ��" class="headerlink" title="����JPGͼ����ѹ��"></a>����JPGͼ����ѹ��</h2><p>��̸������JPG��ͼ����ʱ�򣬹ٷ���Ƶ�еĽ�����Colt McAnlis����˵��:<br><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708180126.png" alt="9.png"></p>
+<h2 id="关于JPG图像的压缩"><a href="#关于JPG图像的压缩" class="headerlink" title="关于JPG图像的压缩"></a>关于JPG图像的压缩</h2><p>当谈到关于JPG的图像的时候，官方视频中的讲解者Colt McAnlis如是说到:<br><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708180126.png" alt="9.png"></p>
 <blockquote>
-<p>By the way ,Colt McAnlis����Ƶ�����ǳ����м��飬Ҳ����Ĭ���Ҹ��˱Ƚ�ϲ������Google �ٷ���<a href="https://www.youtube.com/playlist?list=PLWz5rJ2EKKc9CBxr3BVjPTPoDPLdPIFCE" target="_blank" rel="external">Android Performance Patterns</a>�������Ż���Ƶ���ϼ����кܶ��������������ģ�����ǿ���Ƽ�����Ȥ��ͬѧȥ������ </p>
+<p>By the way ,Colt McAnlis的视频讲解非常富有激情，也很幽默，我个人比较喜欢他。Google 官方的<a href="https://www.youtube.com/playlist?list=PLWz5rJ2EKKc9CBxr3BVjPTPoDPLdPIFCE" target="_blank" rel="external">Android Performance Patterns</a>（性能优化视频）合集中有很多是由他来讲解的，所以强烈推荐有兴趣的同学去看看。 </p>
 </blockquote>
-<p>JPG������PNG��ʽ��ͼ�񣬸��Ӹ��ӣ�����һ�㲻�Ƽ�ֱ��ʹ��JPGͼ�񡣹���JPGͼ����ѹ����ʽ�����¼��֣�</p>
-<p><strong>1. ����JPGͼ��������</strong></p>
+<p>JPG相对于PNG格式的图像，更加复杂，所以一般不推荐直接使用JPG图像。关于JPG图像的压缩方式有以下几种：</p>
+<p><strong>1. 降低JPG图像的质量</strong></p>
 <p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160711101816.png" alt="10.png"></p>
 <p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160711101849.png" alt="11.png"></p>
-<p>��������ͼƬ��ͨ����ͼƬ���������ͣ�ͼƬ��С��263k���ٵ�25k��ѹ���ķǳ��ɹۣ���Ȼ���������е�JPGͼ�����������ֽ��������ķ�ʽ����Ϊ���ȣ�����Ҫ�ڱ�֤�ڲ�Ӱ�������۹ۿ���Ч����ǰ���£���ȥ����ͼ����������</p>
-<p>���ǣ�����������һ�����⣬�������кܶ���������ͼƬ��Ȼ�����ֶ���һ����ͨ���ȶ�ȥ���ͣ�������Ч�ʻ��ǳ����¡����Թٷ���Ƶ��Ϊ���ַ�ʽ�ṩ��һ��ͼ���������ù�����</p>
+<p>以上两张图片，通过将图片的质量降低，图片大小由263k减少到25k，压缩的非常可观，当然并不是所有的JPG图像都适用这种降低质量的方式，因为首先，你需要在保证在不影响人肉眼观看的效果的前提下，再去降低图像的质量。</p>
+<p>但是，这里会出现一个问题，如果你有很多张这样的图片，然后你手动的一个个通过比对去降低，这样的效率会非常低下。所以官方视频中为这种方式提供了一个图像质量适用规则：</p>
 <p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160711102937.png" alt="12.png"></p>
-<p><strong>2. JPG ѹ���Ż�����</strong></p>
-<p>ͬ���ģ����Ϲ���JPGͼ����һЩѹ���Ż�����Ҳ�ܶ࣬������Google������<strong>JPG Optimizer</strong></p>
+<p><strong>2. JPG 压缩优化工具</strong></p>
+<p>同样的，网上关于JPG图像的一些压缩优化工具也很多，你可以Google搜索下<strong>JPG Optimizer</strong></p>
 <p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708181353.png" alt="13.png"></p>
-<h2 id="����WebP"><a href="#����WebP" class="headerlink" title="����WebP"></a>����WebP</h2><p><a href="http://baike.baidu.com/view/1931.htm" target="_blank" rel="external">�ȸ�</a>��<a href="http://baike.baidu.com/view/105.htm" target="_blank" rel="external">Google</a>��������һ��ּ�ڼӿ�ͼƬ�����ٶȵ�ͼƬ��ʽ�����ԣ�ǿ���Ƽ�ʹ��WebPͼ�����滻PNG��JPGͼ����</p>
-<p>�����Ƽ�һ����Դ��<strong><a href="https://github.com/AndroidDeveloperLB/WebpifyYourAndroidApp" target="_blank" rel="external">WebpifyYourAndroidApp</a></strong>�����Խ�PNG����JPGת��ΪWebPͼ����</p>
-<h2 id="����-1"><a href="#����-1" class="headerlink" title="����"></a>����</h2><p>������������������̫�࣬�ǲ�ס�Ļ��� û��ϵ���ٷ���ƵΪ�����ṩһ���ܽ�ͼ��</p>
+<h2 id="关于WebP"><a href="#关于WebP" class="headerlink" title="关于WebP"></a>关于WebP</h2><p><a href="http://baike.baidu.com/view/1931.htm" target="_blank" rel="external">谷歌</a>（<a href="http://baike.baidu.com/view/105.htm" target="_blank" rel="external">Google</a>）开发的一种旨在加快图片加载速度的图片格式，所以，强烈推荐使用WebP图像来替换PNG和JPG图像。</p>
+<p>另外推荐一个开源库<strong><a href="https://github.com/AndroidDeveloperLB/WebpifyYourAndroidApp" target="_blank" rel="external">WebpifyYourAndroidApp</a></strong>，可以将PNG或者JPG转换为WebP图像。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>如果你觉得以上内容太多，记不住的话， 没关系，官方视频为我们提供一张总结图：</p>
 <p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708182427.png" alt="14.png"></p>
-<p>������˵����ͼ��ѹ�����Ż��ĽǶ������Ļ���������ѡ��ͼ����ʱ����Ӧ�����ǵ����ȼ����£�<br><strong>VectorDrawable&gt;WebP&gt;PNG&gt;JPG</strong></p>
+<p>简单来说，从图像压缩和优化的角度来看的话，当你在选择图像的时候，应当考虑的优先级如下：<br><strong>VectorDrawable&gt;WebP&gt;PNG&gt;JPG</strong></p>
 <blockquote>
-<p>������Ϊ�����漰���ܶ��й�ͼ�����ص�רҵ֪ʶ�������д����ĵط�����ӭָ�� :)</p>
+<p>另：因为本文涉及到很多有关图像相关的专业知识，如果有错误的地方，欢迎指出 :)</p>
 </blockquote>
-<h2 id="�ο�"><a href="#�ο�" class="headerlink" title="�ο�"></a>�ο�</h2><p><a href="https://www.youtube.com/watch?v=r_LpCi6DQME&amp;index=2&amp;list=PLWz5rJ2EKKc8jQTUYvIfqA9lMvSGQWtte" target="_blank" rel="external">Image compression for Android developers - Google I/O 2016</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.youtube.com/watch?v=r_LpCi6DQME&amp;index=2&amp;list=PLWz5rJ2EKKc8jQTUYvIfqA9lMvSGQWtte" target="_blank" rel="external">Image compression for Android developers - Google I/O 2016</a></p>
 
       
     </div>
@@ -449,7 +450,7 @@
     <div class="post-spread">
       
         <div class="ds-share flat" data-thread-key="2016/07/11/Google IO 2016 笔记之图像压缩/"
-     data-title="Google I/O 2016 �ʼ�֮ͼ��ѹ��"
+     data-title="Google I/O 2016 笔记之图像压缩"
      data-content=""
      data-url="http://yoursite.com/2016/07/11/Google IO 2016 笔记之图像压缩/">
   <div class="ds-share-inline">
@@ -479,7 +480,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/07/11/Google IO 2016 笔记之图像压缩/"
-           data-title="Google I/O 2016 �ʼ�֮ͼ��ѹ��" data-url="http://yoursite.com/2016/07/11/Google IO 2016 笔记之图像压缩/">
+           data-title="Google I/O 2016 笔记之图像压缩" data-url="http://yoursite.com/2016/07/11/Google IO 2016 笔记之图像压缩/">
       </div>
     
   </div>
@@ -601,7 +602,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#д��j��"><span class="nav-number">1.</span> <span class="nav-text">д��ǰ��</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#����"><span class="nav-number">2.</span> <span class="nav-text">����</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#����PNGͼ����ѹ��"><span class="nav-number">3.</span> <span class="nav-text">����PNGͼ����ѹ��</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#����VectorDrawable"><span class="nav-number">4.</span> <span class="nav-text">����VectorDrawable</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#����JPGͼ����ѹ��"><span class="nav-number">5.</span> <span class="nav-text">����JPGͼ����ѹ��</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#����WebP"><span class="nav-number">6.</span> <span class="nav-text">����WebP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#����-1"><span class="nav-number">7.</span> <span class="nav-text">����</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#�ο�"><span class="nav-number">8.</span> <span class="nav-text">�ο�</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于PNG图像的压缩"><span class="nav-number">3.</span> <span class="nav-text">关于PNG图像的压缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于VectorDrawable"><span class="nav-number">4.</span> <span class="nav-text">关于VectorDrawable</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于JPG图像的压缩"><span class="nav-number">5.</span> <span class="nav-text">关于JPG图像的压缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于WebP"><span class="nav-number">6.</span> <span class="nav-text">关于WebP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">7.</span> <span class="nav-text">最后</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
           </div>
         </section>
