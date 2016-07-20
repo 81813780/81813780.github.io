@@ -87,7 +87,7 @@
 <meta name="description" content="本篇文章已授权微信公众号 guolin_blog （郭霖）独家发布
 
 写在前面Android开发中的图像压缩是一个很重要的部分。而这篇文章会让我们从另外一个角度来认识Android平台下的图像压缩和优化。
-这篇文章更适合和设计师一起来看，所以，如果你和你的设计师是好基友的话，不妨叫上他，倒两杯咖啡，花上几分钟………其实主要有部分图像专业处理上相关的知识，笔者并没有去深入介绍（能力有限），所以有">
+这篇文章更适合和设计师一起来看，所以，如果你和你的设计师是好基友的话，不妨叫上他，倒两杯咖啡，花上几分钟………其实主要有部分图像专业处理上相关的知识，笔者并没有去深入介绍（能力有限），所以有设">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Google I/O 2016 笔记之图像压缩">
 <meta property="og:url" content="http://yoursite.com/2016/07/11/Google IO 2016 笔记之图像压缩/index.html">
@@ -95,7 +95,7 @@
 <meta property="og:description" content="本篇文章已授权微信公众号 guolin_blog （郭霖）独家发布
 
 写在前面Android开发中的图像压缩是一个很重要的部分。而这篇文章会让我们从另外一个角度来认识Android平台下的图像压缩和优化。
-这篇文章更适合和设计师一起来看，所以，如果你和你的设计师是好基友的话，不妨叫上他，倒两杯咖啡，花上几分钟………其实主要有部分图像专业处理上相关的知识，笔者并没有去深入介绍（能力有限），所以有">
+这篇文章更适合和设计师一起来看，所以，如果你和你的设计师是好基友的话，不妨叫上他，倒两杯咖啡，花上几分钟………其实主要有部分图像专业处理上相关的知识，笔者并没有去深入介绍（能力有限），所以有设">
 <meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708165530.png">
 <meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708192322.png">
 <meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708171846.png">
@@ -110,13 +110,13 @@
 <meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160711102937.png">
 <meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708181353.png">
 <meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708182427.png">
-<meta property="og:updated_time" content="2016-07-20T00:38:05.697Z">
+<meta property="og:updated_time" content="2016-07-20T00:40:47.480Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Google I/O 2016 笔记之图像压缩">
 <meta name="twitter:description" content="本篇文章已授权微信公众号 guolin_blog （郭霖）独家发布
 
 写在前面Android开发中的图像压缩是一个很重要的部分。而这篇文章会让我们从另外一个角度来认识Android平台下的图像压缩和优化。
-这篇文章更适合和设计师一起来看，所以，如果你和你的设计师是好基友的话，不妨叫上他，倒两杯咖啡，花上几分钟………其实主要有部分图像专业处理上相关的知识，笔者并没有去深入介绍（能力有限），所以有">
+这篇文章更适合和设计师一起来看，所以，如果你和你的设计师是好基友的话，不妨叫上他，倒两杯咖啡，花上几分钟………其实主要有部分图像专业处理上相关的知识，笔者并没有去深入介绍（能力有限），所以有设">
 <meta name="twitter:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708165530.png">
 
 
@@ -336,12 +336,12 @@
       
 
       
-        <a id="more"></a>
-<blockquote>
+        <blockquote>
 <p><strong>本篇文章已授权微信公众号 guolin_blog （郭霖）独家发布</strong></p>
 </blockquote>
 <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>Android开发中的图像压缩是一个很重要的部分。而这篇文章会让我们从另外一个角度来认识Android平台下的图像压缩和优化。</p>
 <p>这篇文章更适合和设计师一起来看，所以，如果你和你的设计师是好基友的话，不妨叫上他，倒两杯咖啡，花上几分钟…<br>…<br>…<br>其实主要有部分图像专业处理上相关的知识，笔者并没有去深入介绍（能力有限），所以有设计师的帮助会让你了解的更透彻。</p>
+<a id="more"></a>
 <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>日常我们在Android开发中接触到的图像，主要有以下四种格式：</p>
 <p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160708165530.png" alt="1.png"></p>
 <p><strong>1. PNG</strong><br>PNG的名称来源于“可移植网络图形格式(Portable Network Graphic Format，PNG)”，PNG用来存储<a href="http://baike.baidu.com/view/1549178.htm" target="_blank" rel="external">灰度图像</a>时，灰度图像的深度可多到16位，存储彩色图像时，彩色图像的深度可多到48位，并且还可存储多到16位的<a href="http://baike.baidu.com/view/2211519.htm" target="_blank" rel="external">α通道</a>数据。PNG使用从LZ77派生的无损数据压缩算法，一般应用于JAVA程序、<a href="http://baike.baidu.com/view/828.htm" target="_blank" rel="external">网页</a>或S60程序中，原因是它压缩比高，生成文件体积小。</p>
