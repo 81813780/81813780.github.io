@@ -1,0 +1,900 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,,��Ԫ����,Espresso," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="��ƪ��������Ȩ΢�Ź��ں� guolin_blog �����أ����ҷ���
+
+����Espresso �� Google �ٷ��ṩ��һ�����ڲ��� Android UI �Ŀ�Դ���� �� ��2013��10���Ƴ����� released �汾 �� Ŀǰ���°汾�Ѹ��µ�2.x . ������AndroidStudio 2.2 Ԥ�������Ѿ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google I/O 2016 �ʼ�֮Espresso ����">
+<meta property="og:url" content="http://yoursite.com/2016/07/20/Google IO 2016 笔记之Espresso 进阶/index.html">
+<meta property="og:site_name" content="Jack Wang">
+<meta property="og:description" content="��ƪ��������Ȩ΢�Ź��ں� guolin_blog �����أ����ҷ���
+
+����Espresso �� Google �ٷ��ṩ��һ�����ڲ��� Android UI �Ŀ�Դ���� �� ��2013��10���Ƴ����� released �汾 �� Ŀǰ���°汾�Ѹ��µ�2.x . ������AndroidStudio 2.2 Ԥ�������Ѿ">
+<meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160630163843.png">
+<meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160720155556.png">
+<meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160720173804.png">
+<meta property="og:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160720173628.png">
+<meta property="og:updated_time" content="2016-07-20T10:04:33.158Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Google I/O 2016 �ʼ�֮Espresso ����">
+<meta name="twitter:description" content="��ƪ��������Ȩ΢�Ź��ں� guolin_blog �����أ����ҷ���
+
+����Espresso �� Google �ٷ��ṩ��һ�����ڲ��� Android UI �Ŀ�Դ���� �� ��2013��10���Ƴ����� released �汾 �� Ŀǰ���°汾�Ѹ��µ�2.x . ������AndroidStudio 2.2 Ԥ�������Ѿ">
+<meta name="twitter:image" content="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160630163843.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/07/20/Google IO 2016 笔记之Espresso 进阶/"/>
+
+  <title> Google I/O 2016 �ʼ�֮Espresso ���� | Jack Wang </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?5bda4c415924a21790ddb161e0a7ce40";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Jack Wang</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Learning How to Learn</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Google I/O 2016 �ʼ�֮Espresso ����
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-20T18:04:18+08:00" content="2016-07-20">
+              2016-07-20
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/20/Google IO 2016 笔记之Espresso 进阶/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/20/Google IO 2016 笔记之Espresso 进阶/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/07/20/Google IO 2016 笔记之Espresso 进阶/" class="leancloud_visitors" data-flag-title="Google I/O 2016 �ʼ�֮Espresso ����">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><strong>��ƪ��������Ȩ΢�Ź��ں� guolin_blog �����أ����ҷ���</strong></p>
+</blockquote>
+<h2 id="����"><a href="#����" class="headerlink" title="����"></a>����</h2><p><strong>Espresso</strong> �� Google �ٷ��ṩ��һ�����ڲ��� Android UI �Ŀ�Դ���� �� ��2013��10���Ƴ����� released �汾 �� Ŀǰ���°汾�Ѹ��µ�2.x . ������AndroidStudio 2.2 Ԥ�������Ѿ�Ĭ�ϼ��ɸò��Կ� .</p>
+<p><strong>Espresso</strong> ���������������������ɣ�</p>
+<ul>
+<li>ViewMatchers - �ڵ�ǰView�㼶ȥƥ��ָ����View .</li>
+<li>ViewActions - ִ��Views��ĳЩ��Ϊ���������¼� .</li>
+<li>ViewAssertions - ����Views��ĳЩ״̬�����Ƿ���ʾ .</li>
+</ul>
+<p><strong>Espresso</strong>  ����</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">onView(ViewMatcher) //1.ƥ��View</span><br><span class="line">      .perform(ViewAction) //2.ִ��View��Ϊ</span><br><span class="line">           .check(ViewAssertion); //3.��֤View</span><br></pre></td></tr></table></figure>
+<h2 id="׼��"><a href="#׼��" class="headerlink" title="׼��"></a>׼��</h2><p>ĿǰAndroidStudio��2.2Ԥ�����Ѿ�Ĭ�ϼ��ɣ�</p>
+<p><code>build.gradle</code> �������£�</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: &apos;com.android.application&apos;</span><br><span class="line"></span><br><span class="line">android &#123;</span><br><span class="line">    compileSdkVersion 24</span><br><span class="line">    buildToolsVersion &quot;23.0.3&quot;</span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">        applicationId &quot;com.sample.espresso&quot;</span><br><span class="line">        minSdkVersion 14</span><br><span class="line">        targetSdkVersion 24</span><br><span class="line">        versionCode 1</span><br><span class="line">        versionName &quot;1.0&quot;</span><br><span class="line">        testInstrumentationRunner &quot;android.support.test.runner.AndroidJUnitRunner&quot; </span><br><span class="line">    &#125;</span><br><span class="line">    buildTypes &#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            minifyEnabled false</span><br><span class="line">            proguardFiles getDefaultProguardFile(&apos;proguard-android.txt&apos;), &apos;proguard-rules.pro&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    compile fileTree(dir: &apos;libs&apos;, include: [&apos;*.jar&apos;])</span><br><span class="line">    androidTestCompile(&apos;com.android.support.test.espresso:espresso-core:2.2.2&apos;, &#123;</span><br><span class="line">        exclude group: &apos;com.android.support&apos;, module: &apos;support-annotations&apos;</span><br><span class="line">    &#125;)</span><br><span class="line">    testCompile &apos;junit:junit:4.12&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="����-1"><a href="#����-1" class="headerlink" title="����"></a>����</h2><p><strong>����View</strong></p>
+<ul>
+<li><p>withId��ʽ</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onView(withId(R.id.my_view))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>withText��ʽ</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onView(withText(&quot;Hello World!&quot;))</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>ִ��View��Ϊ</strong></p>
+<ul>
+<li><p>����</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onView(...).perform(click());</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>�ı���������</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onView(...).perform(typeText(&quot;Hello&quot;), click());</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>scrollTo ����</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onView(...).perform(scrollTo(), click());</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>����View</strong></p>
+<ul>
+<li><p>����View���ı�����</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onView(...).check(matches(withText(&quot;Hello!&quot;)));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>����View����ʾ״̬</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onView(...).check(matches(isDisplayed()));</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>ʾ�����룺</strong><br>�򵥵ĵ�½��������</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(AndroidJUnit4.class)</span><br><span class="line">public class LoginUITest &#123;</span><br><span class="line"></span><br><span class="line">    @Rule</span><br><span class="line">    public ActivityTestRule&lt;LoginActivity&gt; rule=new ActivityTestRule&lt;LoginActivity&gt;(LogingActivity.class,true);</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    public void login()&#123;</span><br><span class="line">        //login</span><br><span class="line">        onView(withId(R.id.userName)).perform(typeText(&quot;Jack&quot;),closeSoftKeyboard());</span><br><span class="line">        onView(withId(R.id.password)).perform(typeText(&quot;1234&quot;),closeSoftKeyboard());</span><br><span class="line">        onView(withText(&quot;��¼&quot;)).perform(click());</span><br><span class="line"></span><br><span class="line">        //verify</span><br><span class="line">        onView(withId(R.id.content)).check(matches(isDisplayed()));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="����-2"><a href="#����-2" class="headerlink" title="����"></a>����</h2><p>��ӭ���뱾�ĵ��ص����ݡ�</p>
+<p><strong>1. ʹ��IdlingResource</strong></p>
+<p>ͨ��������ʵ�ʵ�Ӧ�õ��л��кܶ��첽��������������������ͼƬ���صȣ�����Espresso����֪�������첽����ʲôʱ��������������Ҫ������IdlingResource .</p>
+<blockquote>
+<p><strong>������Ҫע�����ǣ���������ͨ��AsyncTask����AsyncTaskCompat��ʽ���첽������Espresso�Ѿ������ã�������Ҫȥ�����Ĵ�����</strong></p>
+</blockquote>
+<p>��һ��������������<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile &apos;com.android.support.test.espresso:espresso-idling-resource:2.2.2&apos;</span><br></pre></td></tr></table></figure></p>
+<p>�ڶ�����ʵ��IdlingResource�ӿ� .</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public interface IdlingResource &#123;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * ������ʶ IdlingResource ����</span><br><span class="line">   */</span><br><span class="line">  public String getName();</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * ��ǰ IdlingResource �Ƿ����� .</span><br><span class="line">   */</span><br><span class="line">  public boolean isIdleNow();</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   ע��һ������״̬�任��ResourceCallback�ص�</span><br><span class="line">   */</span><br><span class="line">  public void registerIdleTransitionCallback(ResourceCallback callback);</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * ֪ͨEspresso��ǰIdlingResource״̬�任Ϊ���еĻص��ӿ�</span><br><span class="line">   */</span><br><span class="line">  public interface ResourceCallback &#123;</span><br><span class="line">    /**</span><br><span class="line">     * ��ǰ״̬ת��Ϊ����ʱ�����ø÷�������Espresso</span><br><span class="line">     */</span><br><span class="line">    public void onTransitionToIdle();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>����������һ��ʾ����˵����<br>���������赱ǰ������Ҫ�����û���ͷ�����Ƿ�������ʾ��</p>
+<p><code>Activity</code>����<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public class AvatarActivity extends AppCompatActivity&#123;</span><br><span class="line"></span><br><span class="line">    private ImageView mAvatar;</span><br><span class="line"></span><br><span class="line">    public static SimpleIdlingResource sIdlingResource=new SimpleIdlingResource();</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_idling_resource);</span><br><span class="line"></span><br><span class="line">        mAvatar= (ImageView) findViewById(R.id.avatar);</span><br><span class="line"></span><br><span class="line">        //App ��ʼ����æµ״̬ ���ȴ�֪ͨ</span><br><span class="line">        sIdlingResource.decrement();</span><br><span class="line">        //��ʼ����ͷ��ͼƬ</span><br><span class="line">        Glide.with(this).load(&quot;https://avatars2.githubusercontent.com/u/2297803?v=3&amp;s=460&quot;).into(new GlideDrawableImageViewTarget(mAvatar) &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onResourceReady(GlideDrawable resource,</span><br><span class="line">                                        GlideAnimation&lt;? super GlideDrawable&gt; animation) &#123;</span><br><span class="line">                super.onResourceReady(resource, animation);</span><br><span class="line">                //�������Ϻ󣬽�App���óɿ���״̬</span><br><span class="line">                sIdlingResource.increment();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>SimpleIdlingResource</code>����<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">public final class SimpleIdlingResource implements IdlingResource &#123;</span><br><span class="line"></span><br><span class="line">    private final AtomicInteger counter = new AtomicInteger(0);</span><br><span class="line"></span><br><span class="line">    private volatile ResourceCallback resourceCallback;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return &quot;SimpleIdlingResource&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * ����counter��ֵ����0��˵����ǰ�ǿ���״̬</span><br><span class="line">     */    </span><br><span class="line">    @Override</span><br><span class="line">    public boolean isIdleNow() &#123;</span><br><span class="line">        return counter.get() == 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void registerIdleTransitionCallback(ResourceCallback resourceCallback) &#123;</span><br><span class="line">        this.resourceCallback = resourceCallback;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * counter��ֵ��������</span><br><span class="line">     */</span><br><span class="line">    public void increment() &#123;</span><br><span class="line">        counter.getAndIncrement();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     *counter��ֵ���ٷ���</span><br><span class="line">     */</span><br><span class="line">    public void decrement() &#123;</span><br><span class="line">        int counterVal = counter.decrementAndGet();</span><br><span class="line">        if (counterVal == 0) &#123;</span><br><span class="line">            // ִ��onTransitionToIdle()����������Espresso����ǰ�ǿ���״̬��</span><br><span class="line">            if (null != resourceCallback) &#123;</span><br><span class="line">                resourceCallback.onTransitionToIdle();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (counterVal &lt; 0) &#123;</span><br><span class="line">            throw new IllegalArgumentException(&quot;Counter has been corrupted!&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>IdlingResourceTest</code>����<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(AndroidJUnit4.class)</span><br><span class="line">public class IdlingResourceTest &#123;</span><br><span class="line"></span><br><span class="line">    @Rule</span><br><span class="line">    public ActivityTestRule&lt;AvatarActivity&gt; rule=new ActivityTestRule&lt;&gt;(AvatarActivity.class,true);</span><br><span class="line"></span><br><span class="line">    @Before</span><br><span class="line">    public void registerIdlingResource()&#123;</span><br><span class="line">        Espresso.registerIdlingResources(rule.getActivity().sIdlingResource);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    public void avatarDisplayed()&#123;</span><br><span class="line">        onView(withId(R.id.avatar)).check(matches(isDisplayed()));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @After</span><br><span class="line">    public void unregisterIdlingResource() &#123;</span><br><span class="line">        Espresso.unregisterIdlingResources(</span><br><span class="line">                rule.getActivity().sIdlingResource);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>���⣬Espresso �ṩ��һ��ʵ�ֺõ�<code>CountingIdlingResource</code>�࣬��������û���ر������Ļ���ֱ��ʹ��<code>CountingIdlingResource</code>���ɡ�</p>
+<p><strong>2.����һ���Զ��� Espresso matcher</strong></p>
+<p>ĿǰEspresso�ṩ�ķ��������Ͽ����������Ĳ�������������ͼ��ʾ��</p>
+<p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160630163843.png" alt="test"></p>
+<p>��������Ҫ���Զ�����View��ĳ���Զ������Խ��в��ԵĻ��������Դ���һ���Զ�����Matcher</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public static Matcher&lt;View&gt; isMoved() &#123;</span><br><span class="line">    return new TypeSafeMatcher&lt;View&gt;() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void describeTo(Description description) &#123;</span><br><span class="line">            description.appendText(&quot;is moved&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public boolean matchesSafely(View view) &#123;</span><br><span class="line">            return ((CustomView)view).isMoved();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>3.���δ�������</strong></p>
+<ul>
+<li>ϵͳ������<br>Ϊ�˱��⶯���߳������ڼ���Espresso���Բ�����Ӱ�죬�ٷ�ǿ�ҽ����ر�ϵͳ��������ͼ��ʾ��</li>
+</ul>
+<p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160720155556.png" alt="animate"></p>
+<ul>
+<li>�Զ��嶯����<br>�����Զ��嶯���������߿��Խ������´���ȥ���ƶ����Ŀ��͹ء�<blockquote>
+<p>�÷������Լ���ϵͳ�����Ŀ����¼�������һ��ֵ���Ƽ�������������������Espresso�����С�</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">boolean animationEnabled=true;</span><br><span class="line"></span><br><span class="line">if (Build.VERSION.SDK_INT&gt;=Build.VERSION_CODES.JELLY_BEAN_MR1)&#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        if (Settings.Global.getFloat(getContentResolver(),Settings.Global.ANIMATOR_DURATION_SCALE)==0.0f)&#123;</span><br><span class="line">            animationEnabled=false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; catch (Settings.SettingNotFoundException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong> 4.���ŵ�IntentTest</strong></p>
+<ul>
+<li>��ͨ�ķ�ʽ<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Rule</span><br><span class="line">public ActivityTestRule&lt;MainActivity&gt; rule=new ActivityTestRule&lt;MainActivity&gt;(MainActivity.class)&#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected Intent getActivityIntent() &#123;</span><br><span class="line">        Intent result=new Intent(...);</span><br><span class="line">        result.putExtra(...)</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>����ʹ����ͨ�ķ�ʽ����ô�õ�Ԫ�������µ����в��Զ��ǻ��ڸ�Intent������Activity��������Ȼ�������</p>
+<ul>
+<li>���ŵķ�ʽ</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Rule</span><br><span class="line">public ActivityTestRule&lt;MainActivity&gt; rule=new ActivityTestRule&lt;MainActivity&gt;(MainActivity.class,true,false);//����������Ϊ�Ƿ��Զ�����Activity</span><br><span class="line"></span><br><span class="line">public void myTest()&#123;</span><br><span class="line">    Intent result=new Intent(...);</span><br><span class="line">    result.putExtra(...);</span><br><span class="line">    rule.launchActivity(result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>5.��֤���ԵĶ�����</strong><br>ͨ��ʹ��Espresso����UI���Ե�ʱ�����㲢������ȥ������������Զ�̵ķ������صĶ��������ԣ������Խ�����Espresso Intent��Mockito for mocking���Լ�����ע�䡢Dagger2��<br>��֮������ȥ������Щ������UI���������ݡ�</p>
+<p>���磺����Ҫĳ����ť�ĵ����¼����в��ԣ����Ǹð�ť�ĵ����󣬻���ת������Activity�������㲻ϣ��ȥ���Ա���Activity����ô�����Ϳ���ͨ������Intent��������</p>
+<p>��������Ҫ����IntentTest�����⣺<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">androidTestCompile &apos;com.android.support.test.espresso:espresso-intents:2.2.2&apos;</span><br></pre></td></tr></table></figure></p>
+<p><code>InterceptIntentTest</code>ʾ������<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(AndroidJUnit4.class)</span><br><span class="line">public class InterceptIntentTest &#123;</span><br><span class="line"></span><br><span class="line">    @Rule</span><br><span class="line">    public IntentsTestRule&lt;MainActivity&gt; rule=new IntentsTestRule&lt;&gt;(MainActivity.class);</span><br><span class="line"></span><br><span class="line">    @Before</span><br><span class="line">    public void stubCameraIntent()&#123;</span><br><span class="line">        // ģ��һ��ActivityResult</span><br><span class="line">        Instrumentation.ActivityResult result = createImageCaptureActivityResultStub();</span><br><span class="line">        //����MediaStore.ACTION_IMAGE_CAPTURE��������ģ������result</span><br><span class="line">        intending(hasAction(MediaStore.ACTION_IMAGE_CAPTURE)).respondWith(result);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    public void takePhoto_cameraIsLaunched()&#123;</span><br><span class="line">        onView(withId(R.id.button_take_photo)).perform(click());</span><br><span class="line">        intended(hasAction(MediaStore.ACTION_IMAGE_CAPTURE));</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private Instrumentation.ActivityResult createImageCaptureActivityResultStub() &#123;</span><br><span class="line">        // Create the ActivityResult, with a null Intent since we do not want to return any data</span><br><span class="line">        // back to the Activity.</span><br><span class="line">        return new Instrumentation.ActivityResult(Activity.RESULT_OK, null);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>6.����ֱ�Ӹ���ճ��test����</strong></p>
+<p>�ٸ��򵥵����ӡ�<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onData(allOf(is(instanceOf(Map.class)),hasEntry(equalTo(&quot;STR&quot;),is(&quot;item:50&quot;)))).perform(click());</span><br></pre></td></tr></table></figure></p>
+<p>�������δ�����ƥ���б��з���������item����ִ��ִ�е����¼�������Ҳ������ͬ�����δ���Ҳ�����Ƶ��������Ĳ��Է�����ʹ�ã�<br>��ʱ������һ�£���������adapter�е�����Դ�ĳ���cursor�������������Ǳ����ˣ�����Ҫ�޸ĺܶ��ط�����Ȼ���ⲻ��һ���ϸ���CVսʿ��</p>
+<p>���ԣ�������Ҫ��֮ǰ���д������и�װ��<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void myTest()&#123;</span><br><span class="line">    onData(withItemContent(&quot;item:50&quot;)).perform(click());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static Matcher&lt;? extends Object&gt; withItemContent(String expectedText) &#123;</span><br><span class="line">    ....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>�ܼ򵥣�ֻ�轫���ܱ仯�Ĳ��ֳ��������ɡ�</p>
+<p><strong>7.���β���View��λ��</strong><br>��ͼ��ʾ��</p>
+<p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160720173804.png" alt="position"></p>
+<p><strong>8.�Զ���������־</strong><br>Ĭ�ϵĴ�����־��ӡ��Ϣ�Ƚ϶࣬��ͼ��</p>
+<p><img src="http://o8wshxdfk.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720160720173628.png" alt="error"></p>
+<p>������ֻ����ʾ�����ĵ���־��Ϣ���������Զ���FailureHandler��<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Espresso.setFailureHandler(new CustomFailureHandler());</span><br></pre></td></tr></table></figure></p>
+<h2 id="�ο�"><a href="#�ο�" class="headerlink" title="�ο�"></a>�ο�</h2><p><a href="https://www.youtube.com/watch?v=isihPOY2vS4&amp;index=29&amp;list=PLWz5rJ2EKKc8jQTUYvIfqA9lMvSGQWtte" target="_blank" rel="external">Advanced Espresso - Google I/O 2016</a><br><a href="https://google.github.io/android-testing-support-library/docs/espresso/" target="_blank" rel="external">Espresso �ٷ��ĵ�</a><br><a href="http://www.vogella.com/tutorials/AndroidTestingEspresso/article.html" target="_blank" rel="external">Android user interface testing with Espresso - Tutorial</a><br><a href="https://github.com/googlesamples" target="_blank" rel="external">googlesamples</a>/<strong><a href="https://github.com/googlesamples/android-testing" target="_blank" rel="external">android-testing</a></strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android,</a>
+          
+            <a href="/tags/��Ԫ����/" rel="tag">#��Ԫ����</a>
+          
+            <a href="/tags/Espresso/" rel="tag">#Espresso</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/11/Google IO 2016 笔记之图像压缩/" rel="next" title="Google I/O 2016 笔记之图像压缩">
+                <i class="fa fa-chevron-left"></i> Google I/O 2016 笔记之图像压缩
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/07/20/Google IO 2016 笔记之Espresso 进阶/"
+     data-title="Google I/O 2016 �ʼ�֮Espresso ����"
+     data-content=""
+     data-url="http://yoursite.com/2016/07/20/Google IO 2016 笔记之Espresso 进阶/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/20/Google IO 2016 笔记之Espresso 进阶/"
+           data-title="Google I/O 2016 �ʼ�֮Espresso ����" data-url="http://yoursite.com/2016/07/20/Google IO 2016 笔记之Espresso 进阶/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="Jack Wang" />
+          <p class="site-author-name" itemprop="name">Jack Wang</p>
+          <p class="site-description motion-element" itemprop="description">迅雷中宵激，惊电光夜舒</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/81813780" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/601265161" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/wang-hai-long-5-62" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/b56c1fe69b47/timeline" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#����"><span class="nav-number">1.</span> <span class="nav-text">����</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#׼��"><span class="nav-number">2.</span> <span class="nav-text">׼��</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#����-1"><span class="nav-number">3.</span> <span class="nav-text">����</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#����-2"><span class="nav-number">4.</span> <span class="nav-text">����</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#�ο�"><span class="nav-number">5.</span> <span class="nav-text">�ο�</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack Wang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hlong"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("GadDvVx6tu2rpGhmYYrCGbWY-gzGzoHsz", "PiqnLjaS1rbUImxsjb51y1VL");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
