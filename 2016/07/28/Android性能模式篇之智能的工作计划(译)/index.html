@@ -1,0 +1,858 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,,JobScheduler," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Android官方文档链接:Intelligent Job-Scheduling
+
+译者：Jack Wang微博：汪海游龙
+随着需求和业务的发展，越来越多的apps需要去异步执行各种各样的任务，有些任务是用户去执行的，而有些任务则是apps自身需要去执行，这些任务的使用场景有如下示例：
+
+更新网络资源
+下载信息
+更新后台任务
+处理系统服务的回调">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android性能模式篇之智能的工作计划(译)">
+<meta property="og:url" content="http://yoursite.com/2016/07/28/Android性能模式篇之智能的工作计划(译)/index.html">
+<meta property="og:site_name" content="Jack Wang">
+<meta property="og:description" content="Android官方文档链接:Intelligent Job-Scheduling
+
+译者：Jack Wang微博：汪海游龙
+随着需求和业务的发展，越来越多的apps需要去异步执行各种各样的任务，有些任务是用户去执行的，而有些任务则是apps自身需要去执行，这些任务的使用场景有如下示例：
+
+更新网络资源
+下载信息
+更新后台任务
+处理系统服务的回调">
+<meta property="og:updated_time" content="2016-07-28T06:21:59.760Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android性能模式篇之智能的工作计划(译)">
+<meta name="twitter:description" content="Android官方文档链接:Intelligent Job-Scheduling
+
+译者：Jack Wang微博：汪海游龙
+随着需求和业务的发展，越来越多的apps需要去异步执行各种各样的任务，有些任务是用户去执行的，而有些任务则是apps自身需要去执行，这些任务的使用场景有如下示例：
+
+更新网络资源
+下载信息
+更新后台任务
+处理系统服务的回调">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/07/28/Android性能模式篇之智能的工作计划(译)/"/>
+
+  <title> Android性能模式篇之智能的工作计划(译) | Jack Wang </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?5bda4c415924a21790ddb161e0a7ce40";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Jack Wang</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Learning How to Learn</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android性能模式篇之智能的工作计划(译)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-28T14:04:18+08:00" content="2016-07-28">
+              2016-07-28
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/28/Android性能模式篇之智能的工作计划(译)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/28/Android性能模式篇之智能的工作计划(译)/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/07/28/Android性能模式篇之智能的工作计划(译)/" class="leancloud_visitors" data-flag-title="Android性能模式篇之智能的工作计划(译)">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Android官方文档链接:<a href="https://developer.android.com/topic/performance/scheduling.html#ap" target="_blank" rel="external">Intelligent Job-Scheduling</a></p>
+</blockquote>
+<p>译者：<a href="http://hlong.xyz" target="_blank" rel="external">Jack Wang</a><br>微博：<a href="http://weibo.com/601265161" target="_blank" rel="external">汪海游龙</a></p>
+<p>随着需求和业务的发展，越来越多的<strong>apps</strong>需要去异步执行各种各样的任务，有些任务是用户去执行的，而有些任务则是apps自身需要去执行，这些任务的使用场景有如下示例：</p>
+<ul>
+<li>更新网络资源</li>
+<li>下载信息</li>
+<li>更新后台任务</li>
+<li>处理系统服务的回调</li>
+</ul>
+<a id="more"></a>
+<p>如何智能化的去处理这项工作，是至关重要的，如果处理方式得当的话，不仅可以提高你的应用性能，还可以减轻系统的压力，例如通过减少你的应用耗电量，来达到省电的效果。<br>于是，针对这一需求，<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a>应运而生。</p>
+<p>目前Android系统已经提供了几种APIs来让你的app安排后台任务，但是我们建议优先选择<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a>,因为<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a>API不仅可以选择一个合适的时机去执行任务，提高app和系统的性能。.<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a>还具有高度的扩展性和适用性。你可以通过它来执行一个简单的任务，如清除缓存，也可以通过它来执行复杂的任务，如同步你的数据库到云端。</p>
+<p>除了<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a>,还有其他一些类似的APIs去帮助安排你的工作计划，它们包括：</p>
+<ul>
+<li><a href="https://developer.android.com/reference/android/app/AlarmManager.html" target="_blank" rel="external">AlarmManager</a></li>
+<li><a href="https://github.com/firebase/firebase-jobdispatcher-android#user-content-firebase-jobdispatcher-" target="_blank" rel="external">Firebase JobDispatcher</a></li>
+<li><a href="https://developers.google.com/cloud-messaging/network-manager" target="_blank" rel="external">GCM NETwork Manager</a></li>
+<li><a href="https://developer.android.com/reference/android/content/AbstractThreadedSyncAdapter.html" target="_blank" rel="external">SyncAdapter</a></li>
+<li><a href="https://developer.android.com/reference/android/content/AbstractThreadedSyncAdapter.html" target="_blank" rel="external">Additional Facilities</a></li>
+</ul>
+<p>本篇文章简要介绍了<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a>和其他API，可以帮助你的应用程序优雅的去安排你的工作计划。</p>
+<h2 id="Android-Framework-JobScheduler"><a href="#Android-Framework-JobScheduler" class="headerlink" title="Android Framework JobScheduler"></a>Android Framework JobScheduler</h2><p><a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a>是由<strong>Android</strong>系统框架所提供，它被用来执行任务或者安排工作计划，目前<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a>只能在<strong>Android  5.0</strong>以上的版本才可以使用，并且一直在不断的完善中，尤其是，在最新的<strong>Android  N</strong>版本中增加了一个新的功能，在<a href="https://developer.android.com/reference/android/content/ContentProvider.html" target="_blank" rel="external">ContentProvider</a><br>发生改变时触发你的工作计划。</p>
+<p>由于<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a>是在<strong>Android</strong>系统框架内实现的，所以当apps选择使用<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a>时，它可以通过收集一切有利于安排工作计划和执行任务的有关信息，更好的去完成它的工作。这种方式的批量作业执行允许设备进入和停留在休眠状态更长的时间，保护电池寿命。</p>
+<p>通过注册<code>jobs</code>来使用<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a>，并指定它对网络和时间的要求，然后<strong>Android</strong>系统会优雅地安排工作在适当的时间执行，同时，它也将执行必要的工作在遵循<a href="https://developer.android.com/topic/performance/monitoring-device-state/doze-standby.html" target="_blank" rel="external">Doze and App Standby</a>的限制前提下，另外，<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a>也提供了许多方法来定义工作的执行情况。</p>
+<p>如果你的应用程序的目标是<strong>Android  5（API Level 21）</strong>以上，我们建议您使用<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a>执行后台任务。关于<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a>的更多信息，见其<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">API参考文档</a>。</p>
+<h2 id="AlarmManager"><a href="#AlarmManager" class="headerlink" title="AlarmManager"></a>AlarmManager</h2><p><a href="https://developer.android.com/reference/android/app/AlarmManager.html" target="_blank" rel="external">AlarmManager</a> API是<strong>Android</strong> 系统框架提供的另一种选择，用来安排你的工作计划。它的使用场景，一般是app需要在一个特定的时间发布一个通知或在一个特定的时间内发出一个指示信息。</p>
+<p>如果你的需求仅仅是执行在一个特定时间的任务，而不考虑其他方面的话，你可以使用<a href="https://developer.android.com/reference/android/app/AlarmManager.html" target="_blank" rel="external">AlarmManager</a>。<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a>则更加灵活，你可以指定执行的条件，如设备空闲或者充电的时候。</p>
+<p><a href="https://developer.android.com/reference/android/app/AlarmManager.html" target="_blank" rel="external">AlarmManager</a>并不遵循<a href="https://developer.android.com/topic/performance/monitoring-device-state/doze-standby.html" target="_blank" rel="external">Doze and App Standby</a> 的限制,它在运行任务并没有考虑<a href="https://developer.android.com/topic/performance/monitoring-device-state/doze-standby.html" target="_blank" rel="external">Doze or App Standby</a>模式。需要注意的是，应用程序如果是运行在<a href="https://developer.android.com/topic/performance/monitoring-device-state/doze-standby.html" target="_blank" rel="external">Doze or App Standby</a>模式下，是无法使用网络应用程序。</p>
+<h2 id="Firebase-JobDispatcher"><a href="#Firebase-JobDispatcher" class="headerlink" title="Firebase JobDispatcher"></a>Firebase JobDispatcher</h2><p><a href="https://github.com/firebase/firebase-jobdispatcher-android#user-content-firebase-jobdispatcher-" target="_blank" rel="external">Firebase JobDispatcher</a>是一个开源的库，它和系统框架的<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a>非常相似。不过值得一提的是，<a href="https://github.com/firebase/firebase-jobdispatcher-android#user-content-firebase-jobdispatcher-" target="_blank" rel="external">Firebase JobDispatcher</a>可以兼容<strong>Android</strong> 5.0以下的版本。</p>
+<p><a href="https://github.com/firebase/firebase-jobdispatcher-android#user-content-firebase-jobdispatcher-" target="_blank" rel="external">Firebase JobDispatcher</a>支持使用<strong>Google Play services</strong>的调度去执行（运行）的工作，但这个库也允许您定义和使用其他的实现：例如，你可能会决定使用<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a>或自定义。</p>
+<p>如果你的应用程序需要兼容<strong>Android</strong> 5.o以下的版本，我们建议你使用<a href="https://github.com/firebase/firebase-jobdispatcher-android#user-content-firebase-jobdispatcher-" target="_blank" rel="external">Firebase JobDispatcher</a>。</p>
+<p>关于<a href="https://github.com/firebase/firebase-jobdispatcher-android#user-content-firebase-jobdispatcher-" target="_blank" rel="external">Firebase JobDispatcher</a>的更多信息，参考其<a href="https://github.com/firebase/firebase-jobdispatcher-android#user-content-firebase-jobdispatcher-" target="_blank" rel="external">文档和源代码</a>。</p>
+<h2 id="GCM-Network-Manager"><a href="#GCM-Network-Manager" class="headerlink" title="GCM Network Manager"></a>GCM Network Manager</h2><p><a href="https://developers.google.com/cloud-messaging/network-manager" target="_blank" rel="external">GCM Network Manager</a>是<strong>Android</strong>提供一个可以兼容到5.0以下版本的<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a>。它具有<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a>所有的优势，但是，它依赖于<strong>Google Play services</strong>，因为是由<strong>Google Play services</strong>负责所有工作计划的安排和执行，并达到省电的目的。</p>
+<p><a href="https://developers.google.com/cloud-messaging/network-manager" target="_blank" rel="external">GCM Network Manager</a>是<a href="https://github.com/firebase/firebase-jobdispatcher-android#user-content-firebase-jobdispatcher-" target="_blank" rel="external">Firebase JobDispatcher</a>的较早版本。目前<a href="https://developers.google.com/cloud-messaging/network-manager" target="_blank" rel="external">GCM Network Manager</a>已经停止更新，我们建议您使用<a href="https://github.com/firebase/firebase-jobdispatcher-android#user-content-firebase-jobdispatcher-" target="_blank" rel="external">Firebase JobDispatcher</a>。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>除了上面所介绍的外，还有<a href="https://developer.android.com/reference/android/content/AbstractThreadedSyncAdapter.html" target="_blank" rel="external">SyncAdapter</a>和<a href="https://developer.android.com/guide/components/services.html" target="_blank" rel="external">Services</a>，可以使您的应用程序在特定条件下，更合理的去安排工作计划和执行任务。</p>
+<h3 id="SyncAdapter"><a href="#SyncAdapter" class="headerlink" title="SyncAdapter"></a>SyncAdapter</h3><p><a href="https://developer.android.com/reference/android/content/AbstractThreadedSyncAdapter.html" target="_blank" rel="external">SyncAdapter</a>类是由系统框架所提供，它的作用是用来管理你的设备和服务器之前的同步任务。<strong>Sync adapters</strong>相对于以上的几种APIs，有着更为复杂的实现，因为它要求你至少提供<a href="https://developer.android.com/training/sync-adapters/creating-authenticator.html" target="_blank" rel="external">authenticator</a>和<a href="https://developer.android.com/training/sync-adapters/creating-stub-provider.html" target="_blank" rel="external">content provider</a>的实现。因此，如果你只是简单的想在后台同步数据到云端，你应该使用<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a>、<a href="https://github.com/firebase/firebase-jobdispatcher-android#user-content-firebase-jobdispatcher-" target="_blank" rel="external">Firebase JobDispatcher</a>，或者<a href="https://developers.google.com/cloud-messaging/network-manager" target="_blank" rel="external">GCM Network Manager</a>来代替。</p>
+<p>如果你的需求更贴近于 <a href="https://developer.android.com/reference/android/content/AbstractThreadedSyncAdapter.html" target="_blank" rel="external">SyncAdapter</a>的使用场景，那么你应该使用它。</p>
+<h3 id="Services"><a href="#Services" class="headerlink" title="Services"></a>Services</h3><p><a href="https://developer.android.com/guide/components/services.html" target="_blank" rel="external">Services</a>允许您在后台运行一段长时间的操作。如果这个操作是需要与用户交互的话，我们建议你将任务放在前台的<a href="https://developer.android.com/guide/components/services.html" target="_blank" rel="external">Services</a>中，如播放音乐。另外，在某些使用场景下，我们建议你将<a href="https://developer.android.com/guide/components/services.html" target="_blank" rel="external">Services</a>绑定在用户需要去使用的那个<code>fragment</code> 或者 <code>activity</code>中。</p>
+<p>在<a href="https://developer.android.com/guide/components/services.html" target="_blank" rel="external">Services</a>中,你应该避免使用那些无限制时间和周期性的任务，因为即便它们并没有执行，也会去耗费系统的资源。相应的，针对这些任务，您应该使用本篇文章所介绍的其他解决方案，并提供与之对应的生命周期管理。所以，针对这些特殊的任务，<a href="https://developer.android.com/guide/components/services.html" target="_blank" rel="external">Services</a>并不是你良好的选择方案。</p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>无论你采用的解决方案，请注意以下几点：</p>
+<ul>
+<li><p>考虑到网络的复杂性，一些互联网门户网站，VPN，和代理可能会有网络连接检测失败的问题。一个库或一个接口可能会认为网络是可用的，但是您的服务可能无法访问。所以，你需要合理的去处理失败的情况，以及重新安排工作计划的执行。</p>
+</li>
+<li><p>根据您分配的条件来运行一个任务，如在网络正常连接的情况下，任务被触发后，但是如果发生一个更改，使这些条件不再满足。在这种情况下，你的操作可能会失败，或者反复的去执行。基于这个原因，你应该在任务失败的时候通知你的后台任务逻辑，并避免对资源产生一些过度的使用。</p>
+</li>
+<li><p>如果你使用的是<a href="https://developer.android.com/reference/android/app/AlarmManager.html" target="_blank" rel="external">AlarmManager</a> ，在重新安排你的工作计划执行时，需要避免产生一些不必要的冲突。如果你使用的是<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a><br>, <a href="https://developers.google.com/cloud-messaging/network-manager" target="_blank" rel="external">GCM Network Manager</a>, <a href="https://github.com/firebase/firebase-jobdispatcher-android#user-content-firebase-jobdispatcher-" target="_blank" rel="external">Firebase JobDispatcher</a>, 或者 sync adapters，它们则已经自动处理好这个问题。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android,</a>
+          
+            <a href="/tags/JobScheduler/" rel="tag">#JobScheduler</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/20/Google IO 2016 笔记之Espresso 进阶/" rel="next" title="Google I/O 2016 笔记之Espresso 进阶">
+                <i class="fa fa-chevron-left"></i> Google I/O 2016 笔记之Espresso 进阶
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/07/28/Android性能模式篇之智能的工作计划(译)/"
+     data-title="Android性能模式篇之智能的工作计划(译)"
+     data-content=""
+     data-url="http://yoursite.com/2016/07/28/Android性能模式篇之智能的工作计划(译)/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/28/Android性能模式篇之智能的工作计划(译)/"
+           data-title="Android性能模式篇之智能的工作计划(译)" data-url="http://yoursite.com/2016/07/28/Android性能模式篇之智能的工作计划(译)/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="Jack Wang" />
+          <p class="site-author-name" itemprop="name">Jack Wang</p>
+          <p class="site-description motion-element" itemprop="description">迅雷中宵激，惊电光夜舒</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/81813780" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/601265161" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/wang-hai-long-5-62" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/b56c1fe69b47/timeline" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-Framework-JobScheduler"><span class="nav-number">1.</span> <span class="nav-text">Android Framework JobScheduler</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AlarmManager"><span class="nav-number">2.</span> <span class="nav-text">AlarmManager</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Firebase-JobDispatcher"><span class="nav-number">3.</span> <span class="nav-text">Firebase JobDispatcher</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GCM-Network-Manager"><span class="nav-number">4.</span> <span class="nav-text">GCM Network Manager</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">5.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SyncAdapter"><span class="nav-number">5.1.</span> <span class="nav-text">SyncAdapter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Services"><span class="nav-number">5.2.</span> <span class="nav-text">Services</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意"><span class="nav-number">6.</span> <span class="nav-text">注意</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack Wang</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hlong"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("GadDvVx6tu2rpGhmYYrCGbWY-gzGzoHsz", "PiqnLjaS1rbUImxsjb51y1VL");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
