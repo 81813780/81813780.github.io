@@ -106,7 +106,7 @@
 下载信息
 更新后台任务
 处理系统服务的回调">
-<meta property="og:updated_time" content="2016-07-28T06:21:59.760Z">
+<meta property="og:updated_time" content="2016-07-28T06:25:17.851Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android性能模式篇之智能的工作计划(译)">
 <meta name="twitter:description" content="Android官方文档链接:Intelligent Job-Scheduling
@@ -348,9 +348,10 @@
 <li>处理系统服务的回调</li>
 </ul>
 <a id="more"></a>
-<p>如何智能化的去处理这项工作，是至关重要的，如果处理方式得当的话，不仅可以提高你的应用性能，还可以减轻系统的压力，例如通过减少你的应用耗电量，来达到省电的效果。<br>于是，针对这一需求，<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a>应运而生。</p>
-<p>目前Android系统已经提供了几种APIs来让你的app安排后台任务，但是我们建议优先选择<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a>,因为<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a>API不仅可以选择一个合适的时机去执行任务，提高app和系统的性能。.<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a>还具有高度的扩展性和适用性。你可以通过它来执行一个简单的任务，如清除缓存，也可以通过它来执行复杂的任务，如同步你的数据库到云端。</p>
-<p>除了<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a>,还有其他一些类似的APIs去帮助安排你的工作计划，它们包括：</p>
+<p>如何智能化的去处理这项工作，是至关重要的，如果处理方式得当的话，不仅可以提高你的应用性能，还可以减轻系统的压力，例如通过减少你的应用耗电量，来达到省电的效果。</p>
+<p>于是，针对这一需求，<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a>应运而生。</p>
+<p>目前Android系统已经提供了几种APIs来让你的app安排后台任务，但是我们建议优先选择<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a> ,因为<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a> API不仅可以选择一个合适的时机去执行任务，提高app和系统的性能。.<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a>还具有高度的扩展性和适用性。你可以通过它来执行一个简单的任务，如清除缓存，也可以通过它来执行复杂的任务，如同步你的数据库到云端。</p>
+<p>除了<a href="https://developer.android.com/reference/android/app/job/JobScheduler.html" target="_blank" rel="external">JobScheduler</a> ,还有其他一些类似的APIs去帮助安排你的工作计划，它们包括：</p>
 <ul>
 <li><a href="https://developer.android.com/reference/android/app/AlarmManager.html" target="_blank" rel="external">AlarmManager</a></li>
 <li><a href="https://github.com/firebase/firebase-jobdispatcher-android#user-content-firebase-jobdispatcher-" target="_blank" rel="external">Firebase JobDispatcher</a></li>
